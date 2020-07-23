@@ -4,18 +4,24 @@ import React, {Component} from 'react'
 import Scheduler, {SchedulerData, ViewTypes, DATE_FORMAT, DemoData} from 'react-big-scheduler'
 import withDragDropContext from './withDnDContext'
 import 'react-big-scheduler/lib/css/style.css'
+import {getEvents, getResources} from "./Utils/getData";
+
+const NewDemoData = {resources : getResources(), events: getEvents()};
+
 
 class Basic extends Component{
     constructor(props){
         super(props);
 
         //let schedulerData = new SchedulerData(new moment("2017-12-18").format(DATE_FORMAT), ViewTypes.Week);
-        let schedulerData = new SchedulerData('2017-12-18', ViewTypes.Week, false, false, {
-            // minuteStep: 15
+        let schedulerData = new SchedulerData('2018-09-28', ViewTypes.Week, false, false, {
+            minuteStep: 15,
+            dayStartFrom: 8 ,
+            dayStopTo: 20
         });
         // schedulerData.localeMoment.locale('en');
-        schedulerData.setResources(DemoData.resources);
-        schedulerData.setEvents(DemoData.events);
+        schedulerData.setResources(NewDemoData.resources);
+        schedulerData.setEvents(NewDemoData.events);
         this.state = {
             viewModel: schedulerData
         }
@@ -48,7 +54,7 @@ class Basic extends Component{
 
     prevClick = (schedulerData)=> {
         schedulerData.prev();
-        schedulerData.setEvents(DemoData.events);
+        schedulerData.setEvents(NewDemoData.events);
         this.setState({
             viewModel: schedulerData
         })
@@ -56,7 +62,7 @@ class Basic extends Component{
 
     nextClick = (schedulerData)=> {
         schedulerData.next();
-        schedulerData.setEvents(DemoData.events);
+        schedulerData.setEvents(NewDemoData.events);
         this.setState({
             viewModel: schedulerData
         })
@@ -64,7 +70,7 @@ class Basic extends Component{
 
     onViewChange = (schedulerData, view) => {
         schedulerData.setViewType(view.viewType, view.showAgenda, view.isEventPerspective);
-        schedulerData.setEvents(DemoData.events);
+        schedulerData.setEvents(NewDemoData.events);
         this.setState({
             viewModel: schedulerData
         })
@@ -72,7 +78,7 @@ class Basic extends Component{
 
     onSelectDate = (schedulerData, date) => {
         schedulerData.setDate(date);
-        schedulerData.setEvents(DemoData.events);
+        schedulerData.setEvents(NewDemoData.events);
         this.setState({
             viewModel: schedulerData
         })
