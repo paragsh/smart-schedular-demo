@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import CustomHeader from "./CustomHeader";
-import Basic from "./Basic";
+import CustomHeader from "../CustomHeader/CustomHeader";
+import Scheduler from "../Scheduler/CustomScheduler";
 
 function App() {
   return (
     <div className="App">
      <CustomHeader/>
-     <Basic/>
+     <Scheduler/>
     </div>
   );
 }

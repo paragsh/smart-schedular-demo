@@ -4,12 +4,12 @@ import React, {Component} from 'react'
 import Scheduler, {SchedulerData, ViewTypes } from 'react-big-scheduler'
 import withDragDropContext from './withDnDContext'
 import 'react-big-scheduler/lib/css/style.css'
-import {getEvents, getResources} from "./Utils/Data.util";
+import {getEvents, getResources} from "../../utils/Data.util";
 
 const NewDemoData = {resources : getResources(), events: getEvents()};
 
 
-class Basic extends Component{
+class CustomScheduler extends Component{
     constructor(props){
         super(props);
         let schedulerData = new SchedulerData('2020-08-10', ViewTypes.Week, false, false, {
@@ -138,4 +138,4 @@ class Basic extends Component{
     }
 }
 
-export default withDragDropContext(Basic)
+export default withDragDropContext(CustomScheduler)
