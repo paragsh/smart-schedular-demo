@@ -1,4 +1,4 @@
-import {newBooking} from "./newData";
+import {newBooking} from "./Data";
 import moment from 'moment';
 
 

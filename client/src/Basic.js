@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 //import moment from 'moment'
 //import 'moment/locale/zh-cn';
-import Scheduler, {SchedulerData, ViewTypes, DATE_FORMAT, DemoData} from 'react-big-scheduler'
+import Scheduler, {SchedulerData, ViewTypes } from 'react-big-scheduler'
 import withDragDropContext from './withDnDContext'
 import 'react-big-scheduler/lib/css/style.css'
-import {getEvents, getResources} from "./Utils/getNewData";
+import {getEvents, getResources} from "./Utils/Data.util";
 
 const NewDemoData = {resources : getResources(), events: getEvents()};
 
