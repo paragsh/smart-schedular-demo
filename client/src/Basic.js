@@ -4,7 +4,8 @@ import React, {Component} from 'react'
 import Scheduler, {SchedulerData, ViewTypes, DATE_FORMAT, DemoData} from 'react-big-scheduler'
 import withDragDropContext from './withDnDContext'
 import 'react-big-scheduler/lib/css/style.css'
-import {getEvents, getResources} from "./Utils/getData";
+// import {getEvents, getResources} from "./Utils/getData";
+import {getEvents, getResources} from "./Utils/getNewData";
 
 const NewDemoData = {resources : getResources(), events: getEvents()};
 
@@ -14,10 +15,13 @@ class Basic extends Component{
         super(props);
 
         //let schedulerData = new SchedulerData(new moment("2017-12-18").format(DATE_FORMAT), ViewTypes.Week);
-        let schedulerData = new SchedulerData('2018-09-28', ViewTypes.Week, false, false, {
+        let schedulerData = new SchedulerData('2020-08-10', ViewTypes.Week, false, false, {
             minuteStep: 15,
-            dayStartFrom: 8 ,
-            dayStopTo: 20
+            eventItemHeight: 44,
+            eventItemLineHeight: 46,
+            dayCellWidth: 120,
+            dayStartFrom: 9 ,
+            dayStopTo: 18
         });
         // schedulerData.localeMoment.locale('en');
         schedulerData.setResources(NewDemoData.resources);
@@ -31,7 +35,7 @@ class Basic extends Component{
         const {viewModel} = this.state;
         return (
             <div>
-                <div>
+                <h1 style={{textAlign: 'center', background: "lightpink",height:40}}>Smart Scheduler</h1>
                     <Scheduler schedulerData={viewModel}
                                prevClick={this.prevClick}
                                nextClick={this.nextClick}
@@ -47,7 +51,6 @@ class Basic extends Component{
                                moveEvent={this.moveEvent}
                                newEvent={this.newEvent}
                     />
-                </div>
             </div>
         )
     }
