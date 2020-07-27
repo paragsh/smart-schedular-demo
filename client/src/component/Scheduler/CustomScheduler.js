@@ -1,31 +1,58 @@
 import React, {Component} from 'react'
-//import moment from 'moment'
-//import 'moment/locale/zh-cn';
 import Scheduler, {SchedulerData, ViewTypes } from 'react-big-scheduler'
 import withDragDropContext from './withDnDContext'
 import 'react-big-scheduler/lib/css/style.css'
-import {getEvents, getResources} from "../../utils/Data.util";
-
-const NewDemoData = {resources : getResources(), events: getEvents()};
-
+import {getColor} from "../../utils/Data.util";
 
 class CustomScheduler extends Component{
     constructor(props){
         super(props);
-        let schedulerData = new SchedulerData('2020-08-10', ViewTypes.Week, false, false, {
+        let schedulerData = new SchedulerData('2020-08-15', ViewTypes.Day, false, false, {
             minuteStep: 15,
-            eventItemHeight: 44,
-            eventItemLineHeight: 46,
+            // eventItemHeight: 44,
+            // eventItemLineHeight: 46,
             dayCellWidth: 120,
             dayStartFrom: 9 ,
             dayStopTo: 18
         });
-        // schedulerData.localeMoment.locale('en');
-        schedulerData.setResources(NewDemoData.resources);
-        schedulerData.setEvents(NewDemoData.events);
+        let appointmentList = this.getAppointmentList(props.appointmentList);
+        let staffList = this.getResources(props.staffList);
+        console.log(appointmentList);
+        console.log(staffList);
+        schedulerData.setResources(staffList);
+        schedulerData.setEvents(appointmentList);
         this.state = {
             viewModel: schedulerData
         }
+    }
+
+    getAppointmentList(list) {
+        return list.map((op) => {
+                return {
+                    id: op.id,
+                    start: op.start_Date,
+                    end: op.end_Date,
+                    // resizable: false,
+                    resourceId: op.employee_Id,
+                    title: op.customer_Name,
+                    // movabable: false,
+                    bgColor: getColor(op.probability)
+                }
+            }
+        );
+    }
+
+    getResources(list){
+        const resource = [{
+            id: 'base',
+            name: 'Staff',
+            groupOnly: true
+        }];
+        list.forEach((list, index) => {
+            const temp = {id:list.employeeId, name: list.employeeName};
+            resource.push(temp);
+        });
+        return resource;
     }
 
     render(){
@@ -53,7 +80,8 @@ class CustomScheduler extends Component{
 
     prevClick = (schedulerData)=> {
         schedulerData.prev();
-        schedulerData.setEvents(NewDemoData.events);
+        const {viewModel} = this.state;
+        schedulerData.setEvents(viewModel.events);
         this.setState({
             viewModel: schedulerData
         })
@@ -61,7 +89,8 @@ class CustomScheduler extends Component{
 
     nextClick = (schedulerData)=> {
         schedulerData.next();
-        schedulerData.setEvents(NewDemoData.events);
+        const {viewModel} = this.state;
+        schedulerData.setEvents(viewModel.events);
         this.setState({
             viewModel: schedulerData
         })
@@ -69,7 +98,8 @@ class CustomScheduler extends Component{
 
     onViewChange = (schedulerData, view) => {
         schedulerData.setViewType(view.viewType, view.showAgenda, view.isEventPerspective);
-        schedulerData.setEvents(NewDemoData.events);
+        const {viewModel} = this.state;
+        schedulerData.setEvents(viewModel.events);
         this.setState({
             viewModel: schedulerData
         })
@@ -77,8 +107,8 @@ class CustomScheduler extends Component{
 
     onSelectDate = (schedulerData, date) => {
         schedulerData.setDate(date);
-        schedulerData.setEvents(NewDemoData.events);
-        this.setState({
+        const {viewModel} = this.state;
+        schedulerData.setEvents(viewModel.events);        this.setState({
             viewModel: schedulerData
         })
     }

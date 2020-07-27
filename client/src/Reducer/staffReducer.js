@@ -1,8 +1,8 @@
 import {ADD_STAFF_LIST, DELETE_STAFF_LIST} from "../Constant/ActionType";
-import {getResources} from "../utils/Data.util";
+import {newData} from "../utils/newData";
 
 
-const initialState= getResources();
+const initialState= newData['employees'];
 export const staffReducer = function (state = initialState, action) {
     switch (action.type) {
         case ADD_STAFF_LIST:

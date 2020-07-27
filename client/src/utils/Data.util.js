@@ -1,6 +1,4 @@
 import {newBooking} from "./Data";
-import moment from 'moment';
-
 
 export function getResources() {
     const employeeNameList = newBooking.map(op => op.employeeName);
@@ -33,7 +31,7 @@ export function getEvents() {
     );
 }
 
-function getColor() {
+export function getColor() {
         let number = Math.random() * 100;
         let r, g, b;
         if (number < 50) {
