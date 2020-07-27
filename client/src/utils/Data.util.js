@@ -1,4 +1,5 @@
 import {newBooking} from "./Data";
+import {GREEN, ORANGE, RED} from "../Constant/color";
 
 export function getResources() {
     const employeeNameList = newBooking.map(op => op.employeeName);
@@ -31,22 +32,15 @@ export function getEvents() {
     );
 }
 
-export function getColor() {
-        let number = Math.random() * 100;
-        let r, g, b;
-        if (number < 50) {
-            // green to yellow
-            r = Math.floor(255 * (number / 50));
-            g = 200;
+export function getColor(probablity) {
+        probablity = Math.random()*100;
+      if (probablity > 80) {
+          return RED;
+      } else if (probablity<= 80 && probablity>60) {
+          return ORANGE;
+      }
+      return GREEN;
 
-        } else {
-            // yellow to red
-            r = 200;
-            g = Math.floor(255 * ((50-number%50) / 50));
-        }
-        b = 0;
-
-        return  "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 function componentToHex(c) {
