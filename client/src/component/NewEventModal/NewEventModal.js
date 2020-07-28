@@ -1,40 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        position: 'absolute',
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-    },
-}));
-
-export default function SimpleModal() {
-    const classes = useStyles();
-    // getModalStyle is not a pure function, we roll the style only on the first render
-    const [modalStyle] = React.useState(getModalStyle);
+export default function AlertDialog() {
     const [open, setOpen] = React.useState(false);
 
-    const handleOpen = () => {
+    const handleClickOpen = () => {
         setOpen(true);
     };
 
@@ -42,29 +17,33 @@ export default function SimpleModal() {
         setOpen(false);
     };
 
-    const body = (
-        <div style={modalStyle} className={classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
-            <p id="simple-modal-description">
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
-            <SimpleModal />
-        </div>
-    );
-
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
-                Open Modal
-            </button>
-            <Modal
+            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                Open alert dialog
+            </Button>
+            <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
             >
-                {body}
-            </Modal>
+                <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Let Google help apps determine location. This means sending anonymous location data to
+                        Google, even when no apps are running.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Disagree
+                    </Button>
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                        Agree
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }

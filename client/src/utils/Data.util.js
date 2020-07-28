@@ -26,24 +26,8 @@ export function getEvents() {
                 resourceId: op.employeeName,
                 title: op.customer_Name + ' - ' + op.appointment_Status,
                 // movabable: false,
-                bgColor: getColor(op.probablity)
+                bgColor: getProbabilityMeterColor(op.probablity)
             }
         }
     );
-}
-
-export function getColor(probablity) {
-        probablity = Math.random()*100;
-      if (probablity > 80) {
-          return RED;
-      } else if (probablity<= 80 && probablity>60) {
-          return ORANGE;
-      }
-      return GREEN;
-
-}
-
-function componentToHex(c) {
-    let hex = c.toString(16);
-    return hex.length === 1 ? "0" + hex : hex;
 }
