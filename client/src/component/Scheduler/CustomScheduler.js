@@ -8,6 +8,9 @@ import Button from 'antd/lib/button';
 
 import {getColor} from "../../utils/Data.util";
 import {DARK_GREEN, DARK_ORANGE, DARK_RED, ORANGE, RED} from "../../Constant/color";
+import SimpleModal from "../NewEventModal/NewEventModal";
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddAlertIcon from '@material-ui/icons/AddAlert';
 
 
 
@@ -40,6 +43,7 @@ class CustomScheduler extends Component{
                     // resizable: false,
                     resourceId: op.employee_Id,
                     title: op.customer_Name,
+                    age: op.customer_Age,
                     // movabable: false,
                     bgColor: getColor(op.probability)
                 }
@@ -64,6 +68,7 @@ class CustomScheduler extends Component{
         const {viewModel} = this.state;
         return (
             <div>
+                <div>HELLO<SimpleModal/></div>
                     <Scheduler schedulerData={viewModel}
                                prevClick={this.prevClick}
                                nextClick={this.nextClick}
@@ -76,7 +81,7 @@ class CustomScheduler extends Component{
                                viewEvent2Click={this.ops2}
                                updateEventStart={this.updateEventStart}
                                eventItemTemplateResolver={this.eventItemTemplateResolver}
-                               // eventItemPopoverTemplateResolver={this.eventItemPopoverTemplateResolver}
+                               eventItemPopoverTemplateResolver={this.eventItemPopoverTemplateResolver}
                                updateEventEnd={this.updateEventEnd}
                                moveEvent={this.moveEvent}
                                newEvent={this.newEvent}
@@ -121,7 +126,10 @@ class CustomScheduler extends Component{
     }
 
     eventClicked = (schedulerData, event) => {
+        console.log(`You just clicked an event: {id: ${event.id}, title: ${event.title}}`);
+        return (<SimpleModal/>);
         alert(`You just clicked an event: {id: ${event.id}, title: ${event.title}}`);
+
     };
 
     ops1 = (schedulerData, event) => {
@@ -133,6 +141,9 @@ class CustomScheduler extends Component{
     };
 
     newEvent = (schedulerData, slotId, slotName, start, end, type, item) => {
+
+        // return (<SimpleModal/>);
+
         let newFreshId = 0;
         schedulerData.events.forEach((item) => {
             if(item.id >= newFreshId)
@@ -196,13 +207,21 @@ class CustomScheduler extends Component{
 
     eventItemPopoverTemplateResolver = (schedulerData, eventItem, title, start, end, statusColor) => {
         return (
-            <div style={{width: '300px'}}>
+            <div style={{width: '300px', borderLeft:  '10px solid ' + statusColor}}>
                 <Row type="flex" align="middle">
                     <Col span={2}>
-                        <div className="status-dot" style={{backgroundColor: statusColor}} />
+                        {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
                     </Col>
                     <Col span={22} className="overflow-text">
+                        <span className="header2-text" title={eventItem.title}>Name : </span>
                         <span className="header2-text" title={title}>{title}</span>
+                    </Col>
+                </Row>
+                <Row type="flex" align="middle">
+                    <Col span={2}/>
+                    <Col span={22} className="overflow-text">
+                        <span className="header2-text" title={eventItem.age}>Age : </span>
+                        <span className="header2-text" title={eventItem.age}>{eventItem.age}</span>
                     </Col>
                 </Row>
                 <Row type="flex" align="middle">
@@ -217,16 +236,31 @@ class CustomScheduler extends Component{
                     <Col span={2}>
                         <div />
                     </Col>
-                    <Col span={22}>
-                        <Button onClick={()=>{this.demoButtonClicked(eventItem);}}>Demo</Button>
+                    <Col span={10}>
+                        <DeleteIcon/>
+                        <span className="header2-text"
+                              onClick={()=>this.deleteButtonClicked(eventItem)}
+                              style={{color: RED, cursor: 'pointer', border:RED}}>
+                            Delete
+                        </span>
+
+                    </Col>
+                    <Col span={2}>
+                        <div />
+                    </Col>
+                    <Col span={10}>
+                        <AddAlertIcon style={{Top:5}}/>
+                        <span className="header2-text" style={{color: "rgb(16, 142, 233)", cursor: 'pointer'}}>Reminder</span>
                     </Col>
                 </Row>
             </div>
         );
     };
 
-    demoButtonClicked = (eventItem) => {
-        alert(`You just clicked demo button. event title: ${eventItem.title}`);
+    deleteButtonClicked = (eventItem) => {
+        console.log(eventItem);
+        return (<SimpleModal/>);
+        // alert(`You just clicked demo button. event title: ${eventItem.title}`);
     }
 }
 

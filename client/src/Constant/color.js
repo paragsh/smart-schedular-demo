@@ -1,11 +1,13 @@
+import red from '@material-ui/core/colors/red';
+import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
+export const RED =  red.A400;
+export const ORANGE =  amber.A400;
+export const GREEN =  green.A400;
 
-export const RED =  '#f1949d';
-export const ORANGE =  '#f8df92';
-export const GREEN =  '#9fe0ad';
 
-
-export const DARK_RED =  '#a30816';
-export const DARK_ORANGE =  '#c59601';
-export const DARK_GREEN =  '#186829';
+export const DARK_RED =  red.A700;
+export const DARK_ORANGE =  amber.A700;
+export const DARK_GREEN =  green.A700;
 
 
