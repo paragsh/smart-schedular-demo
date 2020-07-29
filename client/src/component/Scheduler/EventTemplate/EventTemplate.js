@@ -1,7 +1,7 @@
-import {getBorderColor} from "../../Constant/color";
+import {getBorderColor} from "../../../Constant/color";
 import React from "react";
 
-export const eventSchedulerTemplate = (isStart, bgColor, schedulerData, event, mustBeHeight, agendaMaxEventWidth, mustAddCssClass) => {
+export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeight, agendaMaxEventWidth, mustAddCssClass) => {
     let borderWidth = isStart ? '4' : '0';
     let backgroundColor = bgColor;
     let borderColor = getBorderColor(bgColor);
@@ -15,6 +15,6 @@ export const eventSchedulerTemplate = (isStart, bgColor, schedulerData, event, m
         divStyle = {...divStyle, maxWidth: agendaMaxEventWidth};
 
     return <div key={event.id} className={mustAddCssClass} style={divStyle}>
-        <span style={{marginLeft: '4px', lineHeight: `${mustBeHeight}px`}}>{titleText}</span>
+        <span style={{marginLeft: '4px', lineHeight: `${mustBeHeight}px`, color: 'black'}}>{titleText}</span>
     </div>;
 }

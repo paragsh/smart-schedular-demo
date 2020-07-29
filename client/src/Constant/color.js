@@ -3,10 +3,10 @@ import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
 import purple from '@material-ui/core/colors/purple';
 
-export const RED =  red[300];
-export const ORANGE =  amber[700];
-export const GREEN =  green[500];
-export const PURPLE =  purple[300];
+export const RED =  red[50];
+export const ORANGE =  amber[50];
+export const GREEN =  green[50];
+export const PURPLE =  purple[50];
 
 
 export const DARK_RED =  red[900];

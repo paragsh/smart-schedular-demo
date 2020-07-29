@@ -8,14 +8,18 @@ import {
     PURPLE,
 } from "../../Constant/color";
 import AlertDialog from "../NewEventModal/NewEventModal";
-import {newEventPopover} from "./NewEventPopOver";
-import {existingEventPopOver} from "./ExistingEventPopOver";
-import {eventSchedulerTemplate} from "./eventSchedulerTemplate";
+import {newEventPopover} from "./PopOver/NewEventPopOver";
+import {existingEventPopOver} from "./PopOver/ExistingEventPopOver";
+import {eventTemplate} from "./EventTemplate/EventTemplate";
 
+const TYPE_NEW = 'New';
+let schedulerData;
 class CustomScheduler extends Component{
+
     constructor(props){
         super(props);
-        let schedulerData = new SchedulerData('2020-08-15', ViewTypes.Day, false, false, {
+        const selectedDate = props.dateState;
+        schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
             minuteStep: 15,
             eventItemHeight: 33,
             resourceName: 'STAFF NAME',
@@ -29,7 +33,8 @@ class CustomScheduler extends Component{
         schedulerData.setResources(staffList);
         schedulerData.setEvents(appointmentList);
         this.state = {
-            viewModel: schedulerData
+            viewModel: schedulerData,
+            selectedDate: selectedDate
         }
     }
 
@@ -49,6 +54,23 @@ class CustomScheduler extends Component{
                 }
             }
         );
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('props', this.props);
+        console.log('redux', this.props.dateState);
+        console.log('state', this.state.selectedDate);
+        if(this.props.dateState !== this.state.selectedDate) {
+            console.log('INSIDE');
+            let appointmentList = this.getAppointmentList(this.props.appointmentList);
+            let staffList = this.getResources(this.props.staffList);
+            schedulerData.setResources(staffList);
+            schedulerData.setEvents(appointmentList);
+            this.setState({
+                viewModel: schedulerData,
+                selectedDate: this.props.dateState
+            });
+        }
     }
 
     getResources(list){
@@ -75,10 +97,6 @@ class CustomScheduler extends Component{
                                onSelectDate={this.onSelectDate}
                                onViewChange={this.onViewChange}
                                eventItemClick={this.eventClicked}
-                               viewEventClick={this.ops1}
-                               viewEventText="Delete"
-                               viewEvent2Text="Reminder"
-                               viewEvent2Click={this.ops2}
                                updateEventStart={this.updateEventStart}
                                eventItemTemplateResolver={this.eventItemTemplateResolver}
                                eventItemPopoverTemplateResolver={this.eventItemPopoverTemplateResolver}
@@ -92,6 +110,7 @@ class CustomScheduler extends Component{
 
     prevClick = (schedulerData)=> {
         schedulerData.prev();
+        this.props.selectDate(schedulerData.startDate);
         const {viewModel} = this.state;
         schedulerData.setEvents(viewModel.events);
         this.setState({
@@ -102,6 +121,7 @@ class CustomScheduler extends Component{
     nextClick = (schedulerData)=> {
         schedulerData.next();
         const {viewModel} = this.state;
+        this.props.selectDate(schedulerData.startDate);
         schedulerData.setEvents(viewModel.events);
         this.setState({
             viewModel: schedulerData
@@ -119,8 +139,10 @@ class CustomScheduler extends Component{
 
     onSelectDate = (schedulerData, date) => {
         schedulerData.setDate(date);
+        this.props.selectDate(schedulerData.startDate);
         const {viewModel} = this.state;
-        schedulerData.setEvents(viewModel.events);        this.setState({
+        schedulerData.setEvents(viewModel.events);
+        this.setState({
             viewModel: schedulerData
         })
     };
@@ -132,28 +154,21 @@ class CustomScheduler extends Component{
 
     };
 
-    ops1 = (schedulerData, event) => {
-        alert(`You just executed DELETE event: {id: ${event.id}, title: ${event.title}}`);
-    };
-
-    ops2 = (schedulerData, event) => {
-        alert(`You just executed REMINDER to event: {id: ${event.id}, title: ${event.title}}`);
-    };
-
     newEvent = (schedulerData, slotId, slotName, start, end, type, item) => {
         console.log(type, item);
         let newFreshId = 0;
         schedulerData.events.forEach((item) => {
-            if(item.id >= newFreshId)
+            if(item.id >= newFreshId) {
                 newFreshId = item.id + 1;
-        });
+            }
 
+        });
         let newEvent = {
             id: newFreshId,
             title: 'Enter Booking Details',
             start: start,
             end: end,
-            type: 'New',
+            type: TYPE_NEW,
             resourceId: slotId,
             bgColor: PURPLE
         };
@@ -185,26 +200,18 @@ class CustomScheduler extends Component{
     };
 
     eventItemTemplateResolver = (schedulerData, event, bgColor, isStart, isEnd, mustAddCssClass, mustBeHeight, agendaMaxEventWidth) => {
-        return eventSchedulerTemplate(isStart, bgColor, schedulerData, event, mustBeHeight, agendaMaxEventWidth, mustAddCssClass);
+        return eventTemplate(isStart, bgColor, schedulerData, event, mustBeHeight, agendaMaxEventWidth, mustAddCssClass);
     };
 
     eventItemPopoverTemplateResolver = (schedulerData, eventItem, title, start, end, statusColor) => {
         let borderColor = getBorderColor(statusColor);
-        if (eventItem.type === 'New') {
+        if (eventItem.type === TYPE_NEW) {
             return (
             newEventPopover(eventItem, title, start, end))
         }
         return (
             existingEventPopOver(borderColor, eventItem, title, start, end)
         );
-    };
-
-    deleteButtonClicked = (eventItem) => {
-        alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
-    };
-
-    saveButtonClicked = (eventItem) => {
-        alert(`You just clicked saveButtonClicked button. event title: ${eventItem.title}`);
     };
 }
 
