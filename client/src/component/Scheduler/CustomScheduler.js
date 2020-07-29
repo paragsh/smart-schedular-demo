@@ -61,6 +61,7 @@ class CustomScheduler extends Component{
         fetchAppointmentList().then(data=> {
             this.props.setAppointment(data['appointments']);
             this.props.setStaff(data['employees']);
+            this.props.setCustomer(data['appointments']);
         });
     }
 

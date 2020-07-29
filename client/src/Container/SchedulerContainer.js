@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CustomScheduler from "../component/Scheduler/CustomScheduler";
-import {setAppointment, setStaff} from "../Actions/Appointment";
+import {setAppointment, setCustomer, setStaff} from "../Actions/Appointment";
 import {selectDate} from "../Actions/DateAction";
 
 const mapStateToProps = (state, ownProps) => {
@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         selectDate: (selectedDate) => {
             dispatch(selectDate(selectedDate))
+        },
+        setCustomer: (list) => {
+            dispatch(setCustomer(list))
         }
     }
 }
