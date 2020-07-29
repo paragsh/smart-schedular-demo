@@ -4,8 +4,9 @@ import Col from "antd/lib/col";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import React from "react";
+import React, {useState} from "react";
 import SaveIcon from '@material-ui/icons/Save';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export const newEventPopover = (eventItem, title, start, end, customerList, serviceList) => {
 
@@ -13,13 +14,6 @@ export const newEventPopover = (eventItem, title, start, end, customerList, serv
         alert(`You just clicked saveButtonClicked button. event title: ${eventItem.title}`);
     };
 
-    const serviceDropdown = serviceList.map(list => { return {value:list.name, label: list.name }})
-
-    // const [currency, setCurrency] = useState('EUR');
-
-    const handleChange = (event) => {
-        // setCurrency(event.target.value);
-    };
 
     return (
         <div style={{width: '600px'}}>
@@ -37,7 +31,14 @@ export const newEventPopover = (eventItem, title, start, end, customerList, serv
                     <Col span={2}/>
                     <Col span={22} className="overflow-text">
                         <div>
-                            <TextField required id="standard-required" label="Customer Name" margin="dense" defaultValue="Name"/>
+                            <Autocomplete
+                                id="combo-box-demo"
+                                options={customerList}
+                                getOptionLabel={(option) => option['customer_Name']}
+                                style={{ width: 300 }}
+                                size="small"
+                                renderInput={(params) => <TextField {...params} margin="normal" label="Customer Name" variant="outlined" />}
+                            />
                         </div>
                     </Col>
                 </Row>
@@ -45,21 +46,14 @@ export const newEventPopover = (eventItem, title, start, end, customerList, serv
                     <Col span={2}/>
                     <Col span={22} className="overflow-text">
                         <div>
-                            <TextField
-                                id="standard-select-currency"
-                                select
-                                label="Service"
-                                margin="dense"
-                                // value={'currency'}
-                                onChange={handleChange}
-                                helperText="Please select your Service"
-                            >
-                                {serviceDropdown.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
+                            <Autocomplete
+                                id="combo-box-demo"
+                                options={serviceList}
+                                size="small"
+                                getOptionLabel={(option) => option['name']}
+                                style={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params}  margin="normal"  label="Service" variant="outlined" />}
+                            />
                         </div>
                     </Col>
                 </Row>

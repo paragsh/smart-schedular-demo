@@ -15,11 +15,10 @@ export const DARK_GREEN =  green[900];
 export const DARK_PURPLE =  purple[900];
 
 
-export function getProbabilityMeterColor(probablity) {
-    probablity = Math.random()*100;
-    if (probablity > 80) {
+export function getProbabilityMeterColor(probability) {
+    if (probability > 80) {
         return RED;
-    } else if (probablity<= 80 && probablity>60) {
+    } else if (probability<= 80 && probability>60) {
         return ORANGE;
     }
     return GREEN;
