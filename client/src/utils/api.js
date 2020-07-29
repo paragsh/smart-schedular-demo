@@ -1,6 +1,8 @@
 import axios from 'axios';
+import {getAppointmentData} from "./GetAppointmentData";
 
 export function fetchAppointmentList() {
+    return Promise.resolve(getAppointmentData);
     return axios({
         method: 'get',
         baseURL:'http://localhost:5050',
@@ -9,7 +11,7 @@ export function fetchAppointmentList() {
             'Date' : '08/15/2020'
         },
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
-    }).then(data => data);
+    }).then(data => data.data);
 }
 
 
@@ -18,9 +20,7 @@ export function SaveAppointment() {
         method: 'post',
         baseURL:'http://localhost:5050',
         url: '/api/appointment/CreateAppoitment',
-        data: {
-            "appointment":savePayload
-        },
+        data: savePayload,
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
     }).then(data => data);
 }

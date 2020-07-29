@@ -18,11 +18,10 @@ let schedulerData;
 class CustomScheduler extends Component{
 
     constructor(props){
-        SaveAppointment();
         super(props);
         const selectedDate = props.dateState;
         schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
-            minuteStep: 15,
+            minuteStep: 30,
             eventItemHeight: 33,
             resourceName: 'STAFF NAME',
             eventItemLineHeight: 36,
@@ -30,10 +29,10 @@ class CustomScheduler extends Component{
             dayStartFrom: 9 ,
             dayStopTo: 18
         });
-        let appointmentList = this.getAppointmentList(props.appointmentList);
-        let staffList = this.getResources(props.staffList);
-        schedulerData.setResources(staffList);
-        schedulerData.setEvents(appointmentList);
+        // let appointmentList = this.getAppointmentList(props.appointmentList);
+        // let staffList = this.getResources(props.staffList);
+        // schedulerData.setResources(staffList);
+        // schedulerData.setEvents(appointmentList);
         this.state = {
             viewModel: schedulerData,
             selectedDate: selectedDate
@@ -59,15 +58,26 @@ class CustomScheduler extends Component{
     }
 
     componentDidMount() {
-        fetchAppointmentList().then(data=>
-            console.log(data)
-        );
+        fetchAppointmentList().then(data=> {
+            this.props.setAppointment(data['appointments']);
+            this.props.setStaff(data['employees']);
+        });
+    }
+
+    componentWillReceiveProps (newProps) {
+        if( newProps.appointmentList!== this.props.appointmentList || newProps.staffList!== this.props.staffList) {
+            let appointmentList = this.getAppointmentList(this.props.appointmentList);
+            let staffList = this.getResources(this.props.staffList);
+            schedulerData.setResources(staffList);
+            schedulerData.setEvents(appointmentList);
+            this.setState({
+                viewModel: schedulerData,
+                selectedDate: this.props.dateState
+            });
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('props', this.props);
-        console.log('redux', this.props.dateState);
-        console.log('state', this.state.selectedDate);
         if(this.props.dateState !== this.state.selectedDate) {
             console.log('INSIDE');
             let appointmentList = this.getAppointmentList(this.props.appointmentList);

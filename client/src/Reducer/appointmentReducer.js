@@ -5,7 +5,7 @@ const initialState= newData['appointments'];
 export const appointmentReducer = function (state = initialState, action) {
     switch (action.type) {
         case ADD_APPOINTMENT_LIST:
-            return {...state, data: action.payload};
+            return action.payload;
         case DELETE_APPOINTMENT_LIST:
             return {...state, data: action.payload};
         default:

@@ -1,4 +1,4 @@
-import {DARK_PURPLE, DARK_RED, RED} from "../../../Constant/color";
+import {DARK_RED} from "../../../Constant/color";
 import Row from "antd/lib/row";
 import Col from "antd/lib/col";
 import TextField from "@material-ui/core/TextField";
