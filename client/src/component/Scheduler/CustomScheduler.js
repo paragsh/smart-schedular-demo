@@ -11,13 +11,14 @@ import AlertDialog from "../NewEventModal/NewEventModal";
 import {newEventPopover} from "./PopOver/NewEventPopOver";
 import {existingEventPopOver} from "./PopOver/ExistingEventPopOver";
 import {eventTemplate} from "./EventTemplate/EventTemplate";
-import {fetchAppointmentList} from "../../utils/api";
+import {fetchAppointmentList,SaveAppointment} from "../../utils/api";
 
 const TYPE_NEW = 'New';
 let schedulerData;
 class CustomScheduler extends Component{
 
     constructor(props){
+        SaveAppointment();
         super(props);
         const selectedDate = props.dateState;
         schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
@@ -58,7 +59,9 @@ class CustomScheduler extends Component{
     }
 
     componentDidMount() {
-        console.log(fetchAppointmentList());
+        fetchAppointmentList().then(data=>
+            console.log(data)
+        );
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
