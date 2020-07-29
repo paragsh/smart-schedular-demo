@@ -7,6 +7,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         appointmentList: state.appointmentList,
         staffList: state.staffList,
+        serviceList: state.serviceList,
+        customerList: state.customerList,
         dateState: state.date.selectedDate,
     }
 }

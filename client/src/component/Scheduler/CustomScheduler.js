@@ -226,7 +226,7 @@ class CustomScheduler extends Component{
         let borderColor = getBorderColor(statusColor);
         if (eventItem.type === TYPE_NEW) {
             return (
-            newEventPopover(eventItem, title, start, end))
+            newEventPopover(eventItem, title, start, end, this.props.customerList, this.props.serviceList))
         }
         return (
             existingEventPopOver(borderColor, eventItem, title, start, end)
