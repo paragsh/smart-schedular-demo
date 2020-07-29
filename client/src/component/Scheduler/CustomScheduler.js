@@ -11,6 +11,7 @@ import AlertDialog from "../NewEventModal/NewEventModal";
 import {newEventPopover} from "./PopOver/NewEventPopOver";
 import {existingEventPopOver} from "./PopOver/ExistingEventPopOver";
 import {eventTemplate} from "./EventTemplate/EventTemplate";
+import {fetchAppointmentList} from "../../utils/api";
 
 const TYPE_NEW = 'New';
 let schedulerData;
@@ -54,6 +55,10 @@ class CustomScheduler extends Component{
                 }
             }
         );
+    }
+
+    componentDidMount() {
+        console.log(fetchAppointmentList());
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
