@@ -2,13 +2,13 @@ import axios from 'axios';
 import {getAppointmentData} from "./GetAppointmentData";
 
 export function fetchAppointmentList() {
-    return Promise.resolve(getAppointmentData);
+    // return Promise.resolve(getAppointmentData);
     return axios({
         method: 'get',
         baseURL:'http://localhost:5050',
         url: '/api/appointment/GetAppointments',
         params: {
-            'Date' : '08/15/2020'
+            'date' : '08/08/2020'
         },
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
     }).then(data => data.data);
