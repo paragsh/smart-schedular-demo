@@ -8,7 +8,7 @@ import {
     PURPLE,
 } from "../../Constant/color";
 import AlertDialog from "../NewEventModal/NewEventModal";
-import {newEventPopover} from "./PopOver/NewEventPopOver";
+import {NewEventPopover} from "./PopOver/NewEventPopover";
 import {existingEventPopOver} from "./PopOver/ExistingEventPopOver";
 import {eventTemplate} from "./EventTemplate/EventTemplate";
 import {fetchAppointmentList,SaveAppointment} from "../../utils/api";
@@ -245,8 +245,14 @@ class CustomScheduler extends Component{
     eventItemPopoverTemplateResolver = (schedulerData, eventItem, title, start, end, statusColor) => {
         let borderColor = getBorderColor(statusColor);
         if (eventItem.type === TYPE_NEW) {
-            return (
-            newEventPopover(eventItem, title, start, end, this.props.customerList, this.props.serviceList))
+            return (<NewEventPopover
+                eventItem={eventItem}
+                title={title}
+                start={start}
+                end={end}
+                customerList={this.props.customerList}
+                serviceList={this.props.serviceList}
+                 />)
         }
         return (
             existingEventPopOver(borderColor, eventItem, title, start, end)
