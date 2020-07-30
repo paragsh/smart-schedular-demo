@@ -12,6 +12,7 @@
     "antd": "latest",
     "axios": "^0.19.2",
     "axis": "^1.0.0",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-big-scheduler": "^0.2.7",
     "react-dom": "^16.13.1",

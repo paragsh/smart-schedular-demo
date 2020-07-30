@@ -1,14 +1,16 @@
 import axios from 'axios';
 import {getAppointmentData} from "./GetAppointmentData";
+import moment from 'moment';
 
-export function fetchAppointmentList() {
+export function fetchAppointmentList(selectedDate) {
+    var formattedDate = moment(selectedDate).format('DD/MM/YYYY');
     // return Promise.resolve(getAppointmentData);
     return axios({
         method: 'get',
         baseURL:'http://localhost:5050',
         url: '/api/appointment/GetAppointments',
         params: {
-            'date' : '08/08/2020'
+            'date' : formattedDate
         },
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
     }).then(data => data.data);

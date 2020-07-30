@@ -62,16 +62,24 @@ class CustomScheduler extends Component{
     }
 
     componentDidMount() {
-        this.fetchAndSetAppointmentList();
+       const dateVar= this.fetchAndSetAppointmentList(this.props.dateState);
     }
 
-    async fetchAndSetAppointmentList() {
-        console.log('fetchAndSetAppointmentList');
-        await fetchAppointmentList().then(data => {
+    async fetchAndSetAppointmentList(selectedDate) {
+        const fetchApp=await fetchAppointmentList(selectedDate).then(data => {
             this.props.setAppointment(data['appointments']);
             this.props.setStaff(data['employees']);
             this.props.setCustomer(data['appointments']);
+            let appointmentList = this.getAppointmentList(data['appointments']);
+            let staffList = this.getResources(data['employees']);
+            schedulerData.setResources(staffList);
+            schedulerData.setEvents(appointmentList);
+            this.setState({
+                viewModel: schedulerData,
+                selectedDate: this.props.dateState
+            });
         });
+        return fetchApp;
     }
 
     componentWillReceiveProps (newProps) {
@@ -89,7 +97,6 @@ class CustomScheduler extends Component{
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.dateState !== this.state.selectedDate) {
-            console.log('INSIDE');
             let appointmentList = this.getAppointmentList(this.props.appointmentList);
             let staffList = this.getResources(this.props.staffList);
             schedulerData.setResources(staffList);
@@ -137,8 +144,8 @@ class CustomScheduler extends Component{
     }
 
     prevClick = (schedulerData)=> {
-        this.fetchAndSetAppointmentList();
         schedulerData.prev();
+        this.fetchAndSetAppointmentList(schedulerData.startDate);
         this.props.selectDate(schedulerData.startDate);
         const {viewModel} = this.state;
         schedulerData.setEvents(viewModel.events);
@@ -149,8 +156,8 @@ class CustomScheduler extends Component{
     };
 
     nextClick = (schedulerData)=> {
-        this.fetchAndSetAppointmentList();
         schedulerData.next();
+        this.fetchAndSetAppointmentList(schedulerData.startDate);
         const {viewModel} = this.state;
         this.props.selectDate(schedulerData.startDate);
         schedulerData.setEvents(viewModel.events);
@@ -169,7 +176,7 @@ class CustomScheduler extends Component{
     };
 
     onSelectDate = (schedulerData, date) => {
-        this.fetchAndSetAppointmentList();
+        this.fetchAndSetAppointmentList(date);
         schedulerData.setDate(date);
         this.props.selectDate(schedulerData.startDate);
         const {viewModel} = this.state;
@@ -187,7 +194,6 @@ class CustomScheduler extends Component{
     };
 
     newEvent = (schedulerData, slotId, slotName, start, end, type, item) => {
-        console.log(type, item);
         let newFreshId = 0;
         schedulerData.events.forEach((item) => {
             if(item.id >= newFreshId) {
