@@ -50,6 +50,10 @@ class CustomScheduler extends Component{
                     title: op.customer_Name,
                     age: op.customer_Age,
                     type: 'Booked',
+                    treatment_Name:op.treatment_Name,
+                    treatment_Duration:op.treatment_Duration,
+                    booked_Date:op.booked_Date,
+                    probability:op.probability,
                     // movabable: false,
                     bgColor: getProbabilityMeterColor(op.probability)
                 }

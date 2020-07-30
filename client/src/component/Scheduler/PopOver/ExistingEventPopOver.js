@@ -10,15 +10,15 @@ export const existingEventPopOver = (borderColor, eventItem, title, start, end) 
     const deleteButtonClicked = eventItem => {
         alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
     };
-
+const formattedDate=new Date(eventItem.booked_Date);
     return (
         <div style={{width: '300px'}}>
-        <Row type="flex" align="middle">
+       <Row type="flex" align="middle">
             <Col span={2}>
                 {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
             </Col>
             <Col span={22} className="overflow-text">
-                <span className="header2-text" title={eventItem.title}>Name : </span>
+                <span className="header2-text" title={eventItem.customer_Name}>Name : </span>
                 <span className="header2-text" title={title}>{title}</span>
             </Col>
         </Row>
@@ -27,6 +27,51 @@ export const existingEventPopOver = (borderColor, eventItem, title, start, end) 
             <Col span={22} className="overflow-text">
                 <span className="header2-text" title={eventItem.age}>Age : </span>
                 <span className="header2-text" title={eventItem.age}>{eventItem.age}</span>
+            </Col>
+        </Row>
+        <Row type="flex" align="middle">
+            <Col span={2}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+            <Col span={22} className="overflow-text">
+                <span className="header2-text" title={eventItem.treatment_Name}>Treatment : </span>
+                <span className="header2-text" title={eventItem.treatment_Name}>{eventItem.treatment_Name}</span>
+            </Col>
+        </Row>
+        <Row type="flex" align="middle">
+            <Col span={2}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+            <Col span={22} className="overflow-text">
+                <span className="header2-text" title={eventItem.treatment_Duration}>Treatment Duration : </span>
+                <span className="header2-text" title={eventItem.treatment_Duration}>{eventItem.treatment_Duration} Mins</span>
+            </Col>
+        </Row>
+        <Row type="flex" align="middle">
+            <Col span={2}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+            <Col span={22} className="overflow-text">
+                <span className="header2-text" title={eventItem.booked_Date}>Booking Date : </span>
+                <span className="header2-text" title={eventItem.booked_Date}>{formattedDate.toDateString()}</span>
+            </Col>
+        </Row>
+        <Row type="flex" align="middle">
+            <Col span={2}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+            <Col span={22} className="overflow-text">
+                <span className="header2-text" title={eventItem.probability}>No-Show Probability : </span>
+                <span className="header2-text" title={eventItem.probability}>{eventItem.probability.toFixed(2)}%</span>
+            </Col>
+        </Row>
+        <Row type="flex" align="middle">
+            <Col span={2}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+            <Col span={22} className="overflow-text">
+                <span className="header2-text" title={eventItem.probability}>Confirmation Probability : </span>
+                <span className="header2-text" title={eventItem.probability}>{eventItem.probability.toFixed(2)}%</span>
             </Col>
         </Row>
         <Row type="flex" align="middle">
