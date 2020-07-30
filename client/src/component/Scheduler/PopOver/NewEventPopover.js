@@ -21,6 +21,14 @@ export class NewEventPopover extends Component  {
 
     constructor(props) {
         super(props);
+        this.state = {
+            bookingDate: props.start.format("YYYY-MM-DD"),
+            duration: 0,
+            bookingFullTIme: props.start.toString(),
+            bookingFormattedStartTIme: props.start.format('HH:ss'),
+            bookingFormattedEndTIme: props.end.format('HH:ss'),
+            selectedService: ''
+        }
     }
 
     saveButtonClicked = (eventItem) => {
@@ -28,7 +36,21 @@ export class NewEventPopover extends Component  {
     };
 
     handleDateChange = (eventItem) => {
-        // alert(`You just clicked handleDateChange button. event title: ${eventItem.title}`);
+        this.setState({bookingDate : eventItem.format("YYYY-MM-DD")})
+    };
+
+    handleTimeChange = (eventItem) => {
+        this.setState({
+            bookingFullTIme : eventItem.toString(),
+            bookingFormattedStartTIme : eventItem.format('HH:ss'),
+        });
+    };
+
+    handleServiceList = (eventItem) => {
+        console.log(eventItem);
+        this.setState({
+            selectedService : eventItem,
+        });
     };
 
 
@@ -36,7 +58,6 @@ export class NewEventPopover extends Component  {
         const {eventItem, title, start, end, customerList, serviceList} = this.props;
         const duration = 60;
         const endTime = start.add(duration, 'minutes');
-        console.log(start);
         return (
             <div style={{width: '600px'}}>
                 <Row type="flex" align="middle" style={{height: 40}}>
@@ -56,7 +77,7 @@ export class NewEventPopover extends Component  {
                                         margin="normal"
                                         id="date-picker-booking-date"
                                         label="Select Date"
-                                        value={start.format("YYYY-MM-DD")}
+                                        value={this.state.bookingDate}
                                         onChange={this.handleDateChange}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change date',
@@ -74,7 +95,7 @@ export class NewEventPopover extends Component  {
                                 id="Duration"
                                 label="Duration"
                                 margin="normal"
-                                defaultValue={duration + ' mins'}
+                                defaultValue={this.state.duration + ' mins'}
                                 variant="filled"
                             />
                             <InputLabel/>
@@ -91,8 +112,8 @@ export class NewEventPopover extends Component  {
                                     inputVariant="outlined"
                                     minutesStep={30}
                                     label="Start Time"
-                                    value={start.toString()}
-                                    onChange={this.handleDateChange}
+                                    value={this.state.bookingFullTIme}
+                                    onChange={this.handleTimeChange}
                                 />
                             </MuiPickersUtilsProvider>
                         </Col>
@@ -117,8 +138,8 @@ export class NewEventPopover extends Component  {
                                 options={serviceList}
                                 size="small"
                                 getOptionLabel={(option) => option['name']}
-                                renderInput={(params) => <TextField {...params} margin="normal" label="Service"
-                                                                    variant="outlined"/>}
+                                renderInput={(params) =>
+                                    <TextField {...params}onChange={this.handleServiceList} margin="normal" label="Service" variant="outlined"/>}
                             />
                         </Col>
                         <Col span={1}/>
