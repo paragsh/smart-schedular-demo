@@ -54,6 +54,7 @@ class CustomScheduler extends Component{
                     treatment_Duration:op.treatment_Duration,
                     booked_Date:op.booked_Date,
                     probability:op.probability,
+                    confirmationProbability:op.waitListConfirmationProbality,
                     // movabable: false,
                     bgColor: getProbabilityMeterColor(op.probability)
                 }

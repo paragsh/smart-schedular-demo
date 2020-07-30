@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 
 export const existingEventPopOver = (borderColor, eventItem, title, start, end) => {
-
+const showConfirmationProbability=eventItem.confirmationProbability!=0?'block':'none';
     const deleteButtonClicked = eventItem => {
         alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
     };
@@ -33,6 +33,16 @@ const formattedDate=new Date(eventItem.booked_Date);
             <Col span={22}>
                 <span className="NoShowTitle" title={eventItem.probability}>No-Show Probability- </span>
                 <span className="NoShowValue" title={eventItem.probability}>{eventItem.probability.toFixed(2)}%</span>
+            </Col>
+        </Row>
+
+        <Row type="flex" align="middle" style={{display:showConfirmationProbability}}>
+            <Col span={2}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+            <Col span={22}>
+                <span className="NoShowTitle" title={eventItem.confirmationProbability}>Confirmation Probability- </span>
+                <span className="NoShowValue" title={eventItem.confirmationProbability}>{eventItem.confirmationProbability.toFixed(2)}%</span>
             </Col>
         </Row>
         <Row type="flex" align="middle">
