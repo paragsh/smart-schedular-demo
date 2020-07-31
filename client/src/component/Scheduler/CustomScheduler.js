@@ -203,7 +203,7 @@ class CustomScheduler extends Component{
         });
         let newEvent = {
             id: newFreshId,
-            title: 'Enter Booking Details',
+            title: 'New Booking',
             start: start,
             end: end,
             type: TYPE_NEW,
