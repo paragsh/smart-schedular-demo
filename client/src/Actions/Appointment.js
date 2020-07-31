@@ -24,9 +24,10 @@ export function setCustomer(appointmentList) {
             'customer_Age': list.customer_Age
         }
     });
+    const uniqueCustomer = [...new Map(customerList.map(item => [item['customer_Id'], item])).values()];
     return {
         type: ADD_CUSTOMER_LIST,
-        payload: customerList
+        payload: uniqueCustomer
     }
 }
 

@@ -68,12 +68,14 @@ export class NewEventPopover extends Component  {
     };
 
     handleStaffList = (event, values) => {
-        const staffName = values['name'];
-        const staffId = values['id'];
-        this.setState({
-            selectedStaffId : staffId,
-            selectedStaffName : staffName,
-        });
+        if (!!values) {
+            const staffName = values['name'];
+            const staffId = values['id'];
+            this.setState({
+                selectedStaffId : staffId,
+                selectedStaffName : staffName,
+            });
+        }
     };
 
     handleCustomerList = (event, values) => {
