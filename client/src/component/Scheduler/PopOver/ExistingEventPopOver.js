@@ -1,7 +1,6 @@
 import Row from "antd/lib/row";
 import Col from "antd/lib/col";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {DARK_RED, RED} from "../../../Constant/color";
 import AddAlertIcon from "@material-ui/icons/AddAlert";
 import React from "react";
 import  "./PopOverCss.css";
@@ -76,7 +75,7 @@ const startDate=new Date(eventItem.start);
 
         <Row type="flex" align="middle">
             <Col span={2}>
-                
+
             </Col>
             <Col span={22} className="BokkingDate"><TodayIcon/>
                 <span  title={eventItem.booked_Date}>Appointment Date - </span>
@@ -106,7 +105,7 @@ const startDate=new Date(eventItem.start);
                     </Button>
                 </Col>
                 <Col span={11}>
-                <Button  variant="contained" size="small" startIcon={<AddAlertIcon />}>   
+                <Button  variant="contained" size="small" startIcon={<AddAlertIcon />}>
                         Send Reminder
                     </Button>
                 </Col>
