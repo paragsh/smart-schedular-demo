@@ -30,7 +30,7 @@ export class NewEventPopover extends Component  {
             selectedCustomer: '',
         }
     }
-
+    IfFirstAppointment='block';
     saveButtonClicked = () => {
         console.log(this.state);
         SaveAppointment(this.state).then(() => this.props.fetchAndSetAppointmentList(this.state.bookingDate));
@@ -93,6 +93,12 @@ export class NewEventPopover extends Component  {
                     </Col>
                 </Row>
                 <form noValidate autoComplete="off">
+                <Row type="flex" align="middle" style={{display:this.IfFirstAppointment}}>
+                    <Col span={2}/>
+                    <Col span={22} className="overflow-text">
+                        <span className="header2-text" title={title}>Confirmation Probability:30%</span>
+                    </Col>
+                </Row>
                     <Row type="flex" align="middle" style={{marginTop: 5, marginDown: 5}}>
                         <Col span={2}/>
                         <Col span={22} className="overflow-text">
