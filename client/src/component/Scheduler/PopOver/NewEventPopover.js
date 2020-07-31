@@ -24,8 +24,8 @@ export class NewEventPopover extends Component  {
             bookingFormattedEndTIme: props.end.format('HH:ss'),
             selectedTreatmentId: '',
             treatmentDuration: 30,
-            selectedStaffId: '',
-            selectedStaffName: '',
+            selectedStaffId: props.eventItem.resourceId,
+            selectedStaffName: props.eventItem.staffName,
             endTime: props.end.format("LT"),
             selectedCustomer: '',
         }
@@ -184,8 +184,8 @@ export class NewEventPopover extends Component  {
                                 options={allStaffList}
                                 onChange={this.handleStaffList}
                                 defaultValue={{
-                                    "id": eventItem.resourceId,
-                                    "name": eventItem.staffName
+                                    "id": this.state.selectedStaffId,
+                                    "name": this.state.selectedStaffName
                                 }}
                                 size="small"
                                 getOptionLabel={(option) => option['name']}

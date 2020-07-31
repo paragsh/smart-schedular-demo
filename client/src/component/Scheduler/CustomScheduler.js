@@ -251,7 +251,7 @@ class CustomScheduler extends Component{
                 start={start}
                 end={end}
                 customerList={this.props.customerList}
-                fetchAndSetAppointmentList={this.fetchAndSetAppointmentList}
+                fetchAndSetAppointmentList={(date)=>this.fetchAndSetAppointmentList(date)}
                 serviceList={this.props.serviceList}
                  />)
         }
