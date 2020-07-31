@@ -44,9 +44,12 @@ export class NewEventPopover extends Component  {
     handleTimeChange = (eventItem) => {
         const bookingFullTIme = eventItem.toString();
         const bookingFormattedStartTIme = eventItem.format('HH:ss');
+        const duration = this.state.treatmentDuration;
+        const updatedEndTime = moment(bookingFullTIme).add(duration, 'minutes').format("LT");
         this.setState({
             bookingFullTIme : bookingFullTIme,
             bookingFormattedStartTIme : bookingFormattedStartTIme,
+            endTime : updatedEndTime,
         });
     };
 
