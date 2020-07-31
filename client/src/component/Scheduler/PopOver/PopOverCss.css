@@ -1,10 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+body{
+    font-family: 'Open Sans', sans-serif !important;
+}
+.ant-row.ant-row-middle .ant-col-2:first-child {
+    display: none;
+}
+.ant-row.ant-row-middle {
+    margin-left: 20px;
+}
+.Name span {
+    display: inherit;
+    padding: 20px 0 5px;
+}
+.ant-col.ant-col-22 {
+    padding: 4px 0;
+}
 .popOverCss
 {
 
     width: 400px;
     height: 300px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 5px 20px #A1B0CCB5;
+    background: #FFFFFF;
+    box-shadow: 0px 7px 10px 3px rgba(217,217,217,.7);
     border-radius: 5px;
     opacity: 1;
 
@@ -12,40 +30,36 @@
 .Name
 {
     text-align: left;
-    font: bolder 17px/55px Nunito;
-    letter-spacing: -0.26px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    line-height: normal;
+    letter-spacing: normal;
     color: #393939;
     opacity: 1;
 
 }
-.NoShow
+.Duration,
+.CancelBooking,
+.NoShowValue,
+.NoShowTitle,
+.NoShow,
+.BookingDate
 {
 text-align: left;
-font: SemiBold 13px/25px Nunito;
-letter-spacing: -0.2px;
+font-family: 'Open Sans', sans-serif;
+font-size: 13px;
+line-height: normal;
+letter-spacing: normal;
 opacity: 1;
 }
+.BookingDate,
 .NoShowTitle
 {
-    text-align: left;
-    font: bold 13px/25px Nunito;
-    letter-spacing: -0.2px;
     color: #393939;
 }
 .NoShowValue
 {
-text-align: left;
-font: bold 13px/25px Nunito;
-letter-spacing: -0.2px;
 color: #FF4D4D;
-}
-.BookingDate
-{
-text-align: left;
-font:lighter 12px/25px Nunito;
-letter-spacing: -0.18px;
-color: #393939;
-opacity: 1;
 }
 .Line
 {
@@ -53,39 +67,26 @@ width: 260px;
 height: 0px;
 border: 1px solid #E9E9E9;
 opacity: 1;
-
 margin-top: 5px;
 }
 
 .Treatment
 {
 text-align: left;
-font: Bold 15px/25px Nunito;
-letter-spacing: -0.23px;
+font-family: 'Open Sans', sans-serif;
+font-size: 15px;
+line-height: normal;
+letter-spacing: normal;
 color: #393939;
-opacity: 1;
-}
-.Duration
-{
-text-align: left;
-font: Regular 13px/25px Nunito;
-letter-spacing: -0.2px;
-color: #393939;
-opacity: 1;
-}
-.CancelBooking
-{
-text-align: left;
-font: Bold 13px Nunito;
-letter-spacing: -0.2px;
-color: #5D5D5D;
 opacity: 1;
 }
 .ConfirmationPending
 {
 text-align: right;
-font: Regular 12px/25px Nunito;
-letter-spacing: -0.18px;
+font-family: 'Open Sans', sans-serif;
+font-size: 12px;
+line-height: normal;
+letter-spacing: normal;
 color: #868686;
 opacity: 1;
 }
