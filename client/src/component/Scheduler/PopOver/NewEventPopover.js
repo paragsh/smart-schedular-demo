@@ -33,7 +33,7 @@ export class NewEventPopover extends Component  {
 
     saveButtonClicked = () => {
         console.log(this.state);
-        SaveAppointment(this.state).then(resp => console.log(resp));
+        SaveAppointment(this.state).then(() => this.props.fetchAndSetAppointmentList(this.state.bookingDate));
     };
 
     handleDateChange = (eventItem) => {
