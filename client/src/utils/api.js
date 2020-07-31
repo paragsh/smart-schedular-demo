@@ -7,7 +7,7 @@ export function fetchAppointmentList(selectedDate) {
     // return Promise.resolve(getAppointmentData);
     return axios({
         method: 'get',
-        baseURL:'http://localhost:5050',
+        baseURL:'https://smarter.azurewebsites.net',
         url: '/api/appointment/GetAppointments',
         params: {
             'date' : formattedDate
@@ -18,7 +18,8 @@ export function fetchAppointmentList(selectedDate) {
 
 
 export function SaveAppointment(formPayload) {
-    const startDate = moment(formPayload.bookingFullTIme).format();
+    const startDate = moment(formPayload.bookingFullTIme).format('YYYY-MM-DD HH:mm:ss');
+    console.log('startdate',startDate);
     const savePayload={
         "id": 0,
         "location_Id": 3510,
@@ -49,7 +50,7 @@ export function SaveAppointment(formPayload) {
 
     return axios({
         method: 'post',
-        baseURL:'http://localhost:5050',
+        baseURL:'https://smarter.azurewebsites.net',
         url: '/api/appointment/CreateAppoitment',
         data: savePayload,
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
