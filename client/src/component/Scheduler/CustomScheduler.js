@@ -7,11 +7,10 @@ import {
     getBorderColor, getProbabilityMeterColor,
     PURPLE,
 } from "../../Constant/color";
-import AlertDialog from "../NewEventModal/NewEventModal";
 import {NewEventPopover} from "./PopOver/NewEventPopover";
 import {existingEventPopOver} from "./PopOver/ExistingEventPopOver";
 import {eventTemplate} from "./EventTemplate/EventTemplate";
-import {fetchAppointmentList,SaveAppointment} from "../../utils/api";
+import {fetchAppointmentList} from "../../utils/api";
 
 const TYPE_NEW = 'New';
 let schedulerData;

@@ -3,19 +3,15 @@ import Col from "antd/lib/col";
 import 'date-fns';
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
-import React, {useState, Component} from "react";
+import React, {Component} from "react";
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import 'date-fns';
-import { InputLabel } from '@material-ui/core';
+import {InputLabel} from '@material-ui/core';
 import {allStaffList} from "../../../utils/getAllStaffList";
-import DateFnsUtils from '@date-io/date-fns';
 import MomentUtils from '@date-io/moment';
+import moment from 'moment';
 
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-    KeyboardTimePicker,
-} from '@material-ui/pickers';
+import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
+import {SaveAppointment} from "../../../utils/api";
 
 export class NewEventPopover extends Component  {
 
@@ -23,41 +19,68 @@ export class NewEventPopover extends Component  {
         super(props);
         this.state = {
             bookingDate: props.start.format("YYYY-MM-DD"),
-            duration: 0,
             bookingFullTIme: props.start.toString(),
             bookingFormattedStartTIme: props.start.format('HH:ss'),
             bookingFormattedEndTIme: props.end.format('HH:ss'),
-            selectedService: ''
+            selectedTreatmentId: '',
+            treatmentDuration: 30,
+            selectedStaffId: '',
+            selectedStaffName: '',
+            endTime: props.end.format("LT"),
+            selectedCustomer: '',
         }
     }
 
-    saveButtonClicked = (eventItem) => {
-        alert(`You just clicked saveButtonClicked button. event title: ${eventItem.title}`);
+    saveButtonClicked = () => {
+        console.log(this.state);
+        SaveAppointment(this.state).then(resp => console.log(resp));
     };
 
     handleDateChange = (eventItem) => {
-        this.setState({bookingDate : eventItem.format("YYYY-MM-DD")})
+        const bookingDate = eventItem.format("YYYY-MM-DD");
+        this.setState({bookingDate : bookingDate})
     };
 
     handleTimeChange = (eventItem) => {
+        const bookingFullTIme = eventItem.toString();
+        const bookingFormattedStartTIme = eventItem.format('HH:ss');
         this.setState({
-            bookingFullTIme : eventItem.toString(),
-            bookingFormattedStartTIme : eventItem.format('HH:ss'),
+            bookingFullTIme : bookingFullTIme,
+            bookingFormattedStartTIme : bookingFormattedStartTIme,
         });
     };
 
-    handleServiceList = (eventItem) => {
-        console.log(eventItem);
+    handleServiceList = (event, values) => {
+        const treatmentId = values['id'];
+        const duration = values['duration'];
+        const originalStartTime = this.state.bookingFullTIme;
+        const updatedEndTime = moment(originalStartTime).add(duration, 'minutes').format("LT");
         this.setState({
-            selectedService : eventItem,
+            selectedTreatmentId : treatmentId,
+            treatmentDuration : duration,
+            endTime : updatedEndTime,
+        });
+    };
+
+    handleStaffList = (event, values) => {
+        const staffName = values['name'];
+        const staffId = values['id'];
+        this.setState({
+            selectedStaffId : staffId,
+            selectedStaffName : staffName,
+        });
+    };
+
+    handleCustomerList = (event, values) => {
+        const customerId = values['customer_Id'];
+        this.setState({
+            selectedCustomerId : customerId,
         });
     };
 
 
     render() {
         const {eventItem, title, start, end, customerList, serviceList} = this.props;
-        const duration = 60;
-        const endTime = start.add(duration, 'minutes');
         return (
             <div style={{width: '600px'}}>
                 <Row type="flex" align="middle" style={{height: 40}}>
@@ -95,7 +118,7 @@ export class NewEventPopover extends Component  {
                                 id="Duration"
                                 label="Duration"
                                 margin="normal"
-                                defaultValue={this.state.duration + ' mins'}
+                                value={this.state.treatmentDuration + ' mins'}
                                 variant="filled"
                             />
                             <InputLabel/>
@@ -124,7 +147,7 @@ export class NewEventPopover extends Component  {
                                 id="End Time"
                                 margin="normal"
                                 label="End Time"
-                                defaultValue={endTime.format("HH:mm")}
+                                value={this.state.endTime}
                                 variant="filled"
                             />
                         </Col>
@@ -137,18 +160,20 @@ export class NewEventPopover extends Component  {
                                 id="serviceList-autocomplete"
                                 options={serviceList}
                                 size="small"
+                                onChange={this.handleServiceList}
                                 getOptionLabel={(option) => option['name']}
                                 renderInput={(params) =>
-                                    <TextField {...params}onChange={this.handleServiceList} margin="normal" label="Service" variant="outlined"/>}
+                                    <TextField {...params} margin="normal" label="Service" variant="outlined"/>}
                             />
                         </Col>
                         <Col span={1}/>
                         <Col span={8} className="overflow-text">
                             <Autocomplete
-                                id="serviceList-autocomplete"
+                                id="staff-autocomplete"
                                 options={allStaffList}
+                                onChange={this.handleStaffList}
                                 size="small"
-                                getOptionLabel={(option) => option['Name']}
+                                getOptionLabel={(option) => option['name']}
                                 renderInput={(params) => <TextField {...params} margin="normal" label="Staff"
                                                                     variant="outlined"/>}
                             />
@@ -161,6 +186,7 @@ export class NewEventPopover extends Component  {
                                 id="customerList-autocomplete"
                                 options={customerList}
                                 getOptionLabel={(option) => option['customer_Name']}
+                                onChange={this.handleCustomerList}
                                 size="small"
                                 renderInput={(params) => <TextField {...params} margin="normal" label="Customer Name"
                                                                     variant="outlined"/>}
@@ -179,7 +205,7 @@ export class NewEventPopover extends Component  {
                     <Col span={2}/>
                     <Col span={8}>
                         <Button variant="contained"
-                                color="primary" onClick={() => this.saveButtonClicked(eventItem)}>
+                                color="primary" onClick={() => this.saveButtonClicked()}>
                             Book Appointment
                         </Button>
                     </Col>

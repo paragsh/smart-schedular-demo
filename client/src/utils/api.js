@@ -17,14 +17,43 @@ export function fetchAppointmentList(selectedDate) {
 }
 
 
-export function SaveAppointment() {
+export function SaveAppointment(formPayload) {
+    const startDate = moment(formPayload.bookingFullTIme).format();
+    const savePayload={
+        "id": 0,
+        "location_Id": 3510,
+        "business_Type": "Spa",
+        "business_Type_Id": 30,
+        "state": "QC",
+        "country": "Canada",
+        "treatment_Id": formPayload.selectedTreatmentId, //dynamic
+        "treatment_Name": "",//can be null
+        "billable_Item_Id": 1800930,//anything
+        "employee_Id": formPayload.selectedStaffId,//dynamic
+        "employee_Name": formPayload.selectedStaffName,//can be null
+        "status": " ",//can be null
+        "booked_Date": "2020-08-03T09:15:00",//any date cannot be null
+        "start_Date": startDate,//selected date
+        "end_Date": "2020-08-03T09:15:00",//any date cannot be null
+        "cancellation_Type": "",//can be null
+        "customer_Id": formPayload.selectedCustomerId,//dynamic
+        "customer_Name": " ",
+        "customer_Age": 0,
+        "customer_Gender": " ",
+        "treatment_Duration": formPayload.treatmentDuration,//dynamic
+        "fee_Amount": 0,
+        "cancellation_Fee_Status": "",
+        "cancellation_Policy": " ",
+        "probability": 0
+    };
+
     return axios({
         method: 'post',
         baseURL:'http://localhost:5050',
         url: '/api/appointment/CreateAppoitment',
         data: savePayload,
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
-    }).then(data => data);
+    }).then(data => console.log(data));
 }
 
 
@@ -44,17 +73,17 @@ const savePayload={
     "employee_Name": " ",//can be null
     "status": " ",//can be null
     "booked_Date": "2020-08-03T09:15:00",//any date cannot be null
-              "start_Date": "2020-08-03T09:15:00",//selected date
-              "end_Date": "2020-08-03T09:15:00",//any date cannot be null
-              "cancellation_Type": "",//can be null
-              "customer_Id": 138500068,//dynamic
-              "customer_Name": " ",
-              "customer_Age": 0,
-              "customer_Gender": " ",
-              "treatment_Duration": 15,//dynamic
-              "fee_Amount": 0,
-              "cancellation_Fee_Status": "",
-              "cancellation_Policy": " ",
-              "probability": 0
-  }
+    "start_Date": "2020-08-03T09:15:00",//selected date
+    "end_Date": "2020-08-03T09:15:00",//any date cannot be null
+    "cancellation_Type": "",//can be null
+    "customer_Id": 138500068,//dynamic
+    "customer_Name": " ",
+    "customer_Age": 0,
+    "customer_Gender": " ",
+    "treatment_Duration": 15,//dynamic
+    "fee_Amount": 0,
+    "cancellation_Fee_Status": "",
+    "cancellation_Policy": " ",
+    "probability": 0
+  };
 
