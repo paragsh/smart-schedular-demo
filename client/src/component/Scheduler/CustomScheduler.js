@@ -21,9 +21,9 @@ class CustomScheduler extends Component{
         const selectedDate = props.dateState;
         schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
             minuteStep: 30,
-            eventItemHeight: 33,
+            eventItemHeight: 55,
             resourceName: 'STAFF NAME',
-            eventItemLineHeight: 36,
+            eventItemLineHeight: 56,
             dayCellWidth: 120,
             dayStartFrom: 9 ,
             dayStopTo: 18

@@ -6,15 +6,25 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
     let backgroundColor = bgColor;
     let borderColor = getBorderColor(bgColor);
     let titleText = schedulerData.behaviors.getEventTextFunc(schedulerData, event);
+    let treatmentName = event['treatment_Name'];
     let divStyle = {
         borderLeft: borderWidth + 'px solid ' + borderColor,
         backgroundColor: backgroundColor,
-        height: mustBeHeight
+        height: mustBeHeight,
+        marginLeft: '4px',
+        fontSize:12,
+        color: 'black',
+        ontFamily: "Montserrat"
     };
     if (!!agendaMaxEventWidth)
         divStyle = {...divStyle, maxWidth: agendaMaxEventWidth};
 
-    return <div key={event.id} className={mustAddCssClass} style={divStyle}>
-        <span style={{marginLeft: '4px', lineHeight: `${mustBeHeight}px`, color: 'black'}}>{titleText}</span>
-    </div>;
+    return (<div key={event.id} className={mustAddCssClass} style={divStyle}>
+                <div style={{ height: 30, paddingTop: 5}}>
+                    <span style={{fontSize:18}}>{titleText}</span>
+                </div>
+                <div style={{marginTop:2}}>
+                    <span>{treatmentName}</span>
+                </div>
+         </div>);
 }
