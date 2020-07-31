@@ -207,6 +207,7 @@ class CustomScheduler extends Component{
             start: start,
             end: end,
             type: TYPE_NEW,
+            staffName: slotName,
             resourceId: slotId,
             bgColor: PURPLE
         };

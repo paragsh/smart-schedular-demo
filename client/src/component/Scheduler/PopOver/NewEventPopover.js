@@ -33,7 +33,9 @@ export class NewEventPopover extends Component  {
     IfFirstAppointment='block';
     saveButtonClicked = () => {
         console.log(this.state);
-        SaveAppointment(this.state).then(() => this.props.fetchAndSetAppointmentList(this.state.bookingDate));
+        SaveAppointment(this.state).then(() =>
+            this.props.fetchAndSetAppointmentList(this.state.bookingDate)
+        );
     };
 
     handleDateChange = (eventItem) => {
@@ -181,6 +183,10 @@ export class NewEventPopover extends Component  {
                                 id="staff-autocomplete"
                                 options={allStaffList}
                                 onChange={this.handleStaffList}
+                                defaultValue={{
+                                    "id": eventItem.resourceId,
+                                    "name": eventItem.staffName
+                                }}
                                 size="small"
                                 getOptionLabel={(option) => option['name']}
                                 renderInput={(params) => <TextField {...params} margin="normal" label="Staff"
