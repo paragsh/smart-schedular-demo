@@ -5,9 +5,9 @@ import {DARK_RED, RED} from "../../../Constant/color";
 import AddAlertIcon from "@material-ui/icons/AddAlert";
 import React from "react";
 import  "./PopOverCss.css";
-import DateRangeIcon from '@material-ui/icons/DateRange';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import Button from '@material-ui/core/Button';
+import TodayIcon from '@material-ui/icons/Today';
 
 
 export const existingEventPopOver = (borderColor, eventItem, title, start, end) => {
@@ -16,6 +16,7 @@ const showConfirmationProbability=eventItem.confirmationProbability!=0?'block':'
         alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
     };
 const formattedDate=new Date(eventItem.booked_Date);
+const startDate=new Date(eventItem.start);
     return (
     <div className="popOverCss" >
        <Row type="flex" align="middle">
@@ -36,7 +37,8 @@ const formattedDate=new Date(eventItem.booked_Date);
             </Col>
         </Row>
 
-        <Row type="flex" align="middle" style={{display:showConfirmationProbability}}>
+        <Row type="flex" align="middle" style={{display:showConfirmationProbability
+        }}>
             <Col span={2}>
                 {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
             </Col>
@@ -71,6 +73,17 @@ const formattedDate=new Date(eventItem.booked_Date);
                 <span  title={eventItem.treatment_Name}>{eventItem.treatment_Name}</span>
             </Col>
         </Row>
+
+        <Row type="flex" align="middle">
+            <Col span={2}>
+                
+            </Col>
+            <Col span={22} className="BokkingDate"><TodayIcon/>
+                <span  title={eventItem.booked_Date}>Appointment Date - </span>
+                <span  title={eventItem.booked_Date}>{startDate.toDateString()}</span>
+            </Col>
+        </Row>
+
         <Row type="flex" align="middle">
             <Col span={2}>
                 {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
@@ -92,15 +105,23 @@ const formattedDate=new Date(eventItem.booked_Date);
                         Cancel Booking
                     </Button>
                 </Col>
-                <Col span={2}>
-                    <div/>
-                </Col>
-                <Col span={10}>
-                    <Button variant="outlined" color="secondary">
-                        Cancel
+                <Col span={11}>
+                <Button  variant="contained" size="small" startIcon={<AddAlertIcon />}>   
+                        Send Reminder
                     </Button>
                 </Col>
             </Row>
+            <Row type="flex" align="middle">
+            <Col span={2}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+            <Col span={19} className="ConfirmationPending">
+                <span >Confirmation Pending</span>
+            </Col>
+            <Col span={3}>
+                {/*<div className="status-dot" style={{backgroundColor: statusColor}} />*/}
+            </Col>
+        </Row>
     </div>
     );
 };

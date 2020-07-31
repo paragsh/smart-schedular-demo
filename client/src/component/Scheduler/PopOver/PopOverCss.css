@@ -1,7 +1,7 @@
 .popOverCss
 {
 
-    width: 350px;
+    width: 400px;
     height: 300px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 5px 20px #A1B0CCB5;
@@ -20,8 +20,6 @@
 }
 .NoShow
 {
-width: 157px;
-height: 18px;
 text-align: left;
 font: SemiBold 13px/25px Nunito;
 letter-spacing: -0.2px;
@@ -29,8 +27,6 @@ opacity: 1;
 }
 .NoShowTitle
 {
-    width: 126px;
-    height: 18px;
     text-align: left;
     font: bold 13px/25px Nunito;
     letter-spacing: -0.2px;
@@ -38,8 +34,6 @@ opacity: 1;
 }
 .NoShowValue
 {
-width: 31px;
-height: 18px;
 text-align: left;
 font: bold 13px/25px Nunito;
 letter-spacing: -0.2px;
@@ -47,8 +41,6 @@ color: #FF4D4D;
 }
 .BookingDate
 {
-width: 146px;
-height: 16px;
 text-align: left;
 font:lighter 12px/25px Nunito;
 letter-spacing: -0.18px;
@@ -64,11 +56,9 @@ opacity: 1;
 
 margin-top: 5px;
 }
+
 .Treatment
 {
-
-width: 220px;
-height: 20px;
 text-align: left;
 font: Bold 15px/25px Nunito;
 letter-spacing: -0.23px;
@@ -77,7 +67,6 @@ opacity: 1;
 }
 .Duration
 {
-width: 187px;
 text-align: left;
 font: Regular 13px/25px Nunito;
 letter-spacing: -0.2px;
@@ -90,5 +79,13 @@ text-align: left;
 font: Bold 13px Nunito;
 letter-spacing: -0.2px;
 color: #5D5D5D;
+opacity: 1;
+}
+.ConfirmationPending
+{
+text-align: right;
+font: Regular 12px/25px Nunito;
+letter-spacing: -0.18px;
+color: #868686;
 opacity: 1;
 }
