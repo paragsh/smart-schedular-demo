@@ -72,7 +72,7 @@ export const serviceList = [{
         "id": 17,
         "name": "Sand and Coconut Scrub",
         "is_AddON": true,
-        "duration": 45,
+        "duration": 60,
         "primarY_TREATMENT_ID": 3
     },
     {

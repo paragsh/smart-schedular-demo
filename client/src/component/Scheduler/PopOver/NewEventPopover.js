@@ -11,13 +11,14 @@ import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 
 import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
-import {SaveAppointment} from "../../../utils/api";
+import {predictAppointment, SaveAppointment} from "../../../utils/api";
 
 export class NewEventPopover extends Component  {
 
     constructor(props) {
         super(props);
         this.state = {
+            checkProbability : 100,
             bookingDate: props.start.format("YYYY-MM-DD"),
             bookingFullTIme: props.start.toString(),
             bookingFormattedStartTIme: props.start.format('HH:ss'),
@@ -35,6 +36,15 @@ export class NewEventPopover extends Component  {
         SaveAppointment(this.state).then(() =>
             this.props.fetchAndSetAppointmentList(this.state.bookingDate)
         );
+    };
+
+    predictButtonClicked = () => {
+        predictAppointment(this.state).then((res)=>  {
+            console.log(res[0].probability);
+            const checkProbability = res[0].probability.toFixed(2);
+            this.setState({checkProbability : checkProbability})
+            }
+        )
     };
 
     handleDateChange = (eventItem) => {
@@ -87,6 +97,8 @@ export class NewEventPopover extends Component  {
 
     render() {
         const {eventItem, title, start, end, customerList, serviceList} = this.props;
+        const probabilityCheckerText  = this.state.checkProbability === 100? 'Check Cancellation Probability' : ("Cancellation Probability : " + this.state.checkProbability +"%");
+        const probabilityColor = this.state.checkProbability > 50 ? "CancellationPro" : "ConfirmationPro";
         return (
             <div style={{width: '600px'}}>
                 <Row type="flex" align="middle" style={{height: 40}}>
@@ -194,7 +206,11 @@ export class NewEventPopover extends Component  {
                         </Col>
                         <Col span={1} />
                             <Col span={11} className="bodyText">
-                                <span className="ConfirmationPro" title={title}>Confirmation Probability:30%</span>
+                                <span className={probabilityColor}
+                                      onClick={()=>this.predictButtonClicked()}
+                                      title={title}>
+                                    {probabilityCheckerText}
+                                </span>
                             </Col>
                     </Row>
                 </form>
