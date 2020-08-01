@@ -14,7 +14,7 @@ import TodayIcon from '@material-ui/icons/Today';
 export const existingEventPopOver = (statusColor, borderColor, eventItem, title, start, end) => {
 const showConfirmationProbability=eventItem.confirmationProbability!=0?'block':'none';
     const deleteButtonClicked = eventItem => {
-        alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
+       // alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
     };
 const formattedDate=new Date(eventItem.booked_Date);
 const startDate=new Date(eventItem.start);

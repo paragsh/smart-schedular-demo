@@ -182,7 +182,7 @@ class CustomScheduler extends Component{
     eventClicked = (schedulerData, event) => {
         console.log(`You just clicked an event: {id: ${event.id}, title: ${event.title}}`);
         // return (<AlertDialog/>);
-        alert(`You just clicked an event: {id: ${event.id}, title: ${event.title}}`);
+        //alert(`You just clicked an event: {id: ${event.id}, title: ${event.title}}`);
 
     };
 
