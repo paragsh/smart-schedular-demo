@@ -20,7 +20,7 @@ class CustomScheduler extends Component{
         super(props);
         const selectedDate = props.dateState;
         schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
-            minuteStep: 30,
+            minuteStep: 15,
             eventItemHeight: 50,
             resourceName: 'STAFF NAME',
             eventItemLineHeight: 55,
@@ -28,10 +28,7 @@ class CustomScheduler extends Component{
             dayStartFrom: 9 ,
             dayStopTo: 18
         });
-        // let appointmentList = this.getAppointmentList(props.appointmentList);
-        // let staffList = this.getResources(props.staffList);
-        // schedulerData.setResources(staffList);
-        // schedulerData.setEvents(appointmentList);
+
         this.state = {
             viewModel: schedulerData,
             selectedDate: selectedDate
@@ -248,6 +245,7 @@ class CustomScheduler extends Component{
                 borderColor={borderColor}
                 title={title}
                 start={start}
+                appointmentList={this.props.appointmentList}
                 end={end}
                 customerList={this.props.customerList}
                 fetchAndSetAppointmentList={(date)=>this.fetchAndSetAppointmentList(date)}

@@ -20,11 +20,8 @@ export function fetchWaitListConfirmation(noshowProbability) {
 
     return axios({
         method: 'get',
-        baseURL:'https://smarter.azurewebsites.net',
-        url: '/api/appointment/waitlist',
-        params: {
-            'noShowProbabilities' : noshowProbability
-        },
+        baseURL:'https://smarter.azurewebsites.net/',
+        url: '/api/appointment/waitlist/'+ noshowProbability,
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
     }).then(data => data.data);
 }

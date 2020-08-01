@@ -11,7 +11,7 @@ import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 
 import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
-import {predictAppointment, SaveAppointment} from "../../../utils/api";
+import {fetchWaitListConfirmation, predictAppointment, SaveAppointment} from "../../../utils/api";
 
 export class NewEventPopover extends Component  {
 
@@ -25,6 +25,7 @@ export class NewEventPopover extends Component  {
             bookingFormattedEndTIme: props.end.format('HH:ss'),
             selectedTreatmentId: '',
             treatmentDuration: 30,
+            confirmationProbability: 0,
             selectedStaffId: props.eventItem.resourceId,
             selectedStaffName: props.eventItem.staffName,
             endTime: props.end.format("LT"),
@@ -94,10 +95,44 @@ export class NewEventPopover extends Component  {
         });
     };
 
+    componentDidMount() {
+        this.checkWaitingProbabality();
+    }
+
+    checkWaitingProbabality() {
+        const {appointmentList, end, start, eventItem} = this.props;
+        function conditions(list) {
+            const existBlockStart = moment(list.start_Date).format();
+            const existBlockEnd = moment(list.end_Date).format();
+
+            const newBlockStart = start.format();
+            const newBlockEnd = end.format();
+
+
+            const conditionOne = newBlockStart === existBlockStart;
+            const conditionTwo = existBlockStart <= newBlockStart && newBlockStart < existBlockEnd;
+            const conditionThree = newBlockEnd === existBlockEnd;
+            const conditionFour = existBlockStart < newBlockEnd && newBlockEnd <= existBlockEnd;
+            const allConditions = (conditionTwo && conditionThree) || (conditionOne && conditionFour) || conditionTwo || conditionFour ;
+            return allConditions;
+        }
+
+        const filteredBySameStaff = appointmentList.filter(list => ((list.employee_Id === eventItem.resourceId)));
+        const probabilityList = filteredBySameStaff.filter(list => (conditions(list))).map(list=>list.probability);
+        if(probabilityList.length>0){
+            const probabilityString = probabilityList.join();
+            fetchWaitListConfirmation(probabilityString).then(res => {
+                let resFloat = res[0].toFixed(2);
+                this.setState({confirmationProbability : resFloat});
+            });
+        }
+
+    }
 
     render() {
         const {eventItem, title, start, end, customerList, serviceList} = this.props;
-        const probabilityCheckerText  = this.state.checkProbability === 100? 'Check Cancellation Probability' : ("Cancellation Probability : " + this.state.checkProbability +"%");
+        const probabilityCheckerText  = this.state.checkProbability === 100? 'Check No-Show Probability' : ("Cancellation Probability : " + this.state.checkProbability +"%");
+        const confirmationProbabilityText = 'Probability to Confirm ' + this.state.confirmationProbability + '%';
         const probabilityColor = this.state.checkProbability > 50 ? "CancellationPro" : "ConfirmationPro";
         return (
             <div style={{width: '600px'}}>
@@ -108,7 +143,7 @@ export class NewEventPopover extends Component  {
                 </Row>
                 <form noValidate autoComplete="off">
                     <Row type="flex" align="middle" style={{marginTop: 5, marginDown: 5}}>
-                        <Col span={24} className="bodyText">
+                        <Col span={12} className="bodyText">
                             <MuiPickersUtilsProvider utils={MomentUtils}>
                                     <KeyboardDatePicker
                                         variant="inline"
@@ -124,6 +159,13 @@ export class NewEventPopover extends Component  {
                                     />
                             </MuiPickersUtilsProvider>
                         </Col>
+                        <Col span={1} />
+                        { (this.state.confirmationProbability > 0) &&<Col span={11} className="bodyText">
+                                <span className="ConfirmationPro"
+                                      title={title}>
+                                    {confirmationProbabilityText}
+                                </span>
+                        </Col>}
                     </Row>
 
                     <Row type="flex" align="middle" style={{marginTop: 5, marginDown: 5}}>
