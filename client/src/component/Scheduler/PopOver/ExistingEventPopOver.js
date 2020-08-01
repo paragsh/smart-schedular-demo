@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import TodayIcon from '@material-ui/icons/Today';
 
 
-export const existingEventPopOver = (borderColor, eventItem, title, start, end) => {
+export const existingEventPopOver = (statusColor, borderColor, eventItem, title, start, end) => {
 const showConfirmationProbability=eventItem.confirmationProbability!=0?'block':'none';
     const deleteButtonClicked = eventItem => {
         alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
@@ -20,10 +20,10 @@ const formattedDate=new Date(eventItem.booked_Date);
 const startDate=new Date(eventItem.start);
     return (
     <div className="popOverCss" >
-        <Row type="flex" align="middle" className="NoShowBlock" >
+        <Row type="flex" align="middle" className="NoShowBlock" style={{background: statusColor}}>
             <Col span={24}>
-                <span className="NoShowTitle bodyText" title={eventItem.probability}>No-Show Probability: </span>
-                <span className="NoShowValue bodyText" title={eventItem.probability}>{eventItem.probability.toFixed(2)}%</span>
+                <span className="NoShowTitle bodyText" style={{color: borderColor}} title={eventItem.probability}>No-Show Probability: </span>
+                <span className="NoShowValue bodyText" style={{color: borderColor}} title={eventItem.probability}>{eventItem.probability.toFixed(2)}%</span>
             </Col>
         </Row>
 
@@ -84,12 +84,16 @@ const startDate=new Date(eventItem.start);
                 </Col>
             </Row>
             <Row type="flex" align="middle">
-                <Col span={24} className="ConfirmationPending">
-                    <span> <ErrorOutlineRoundedIcon className="mbIcon" />Confirmation Pending...</span>
-                </Col>
-                <Col span={24} className="AppointmentConfirmed">
-                    <span> <CheckCircleOutlineRoundedIcon className="mbIcon" />Appointment Confirmed!</span>
-                </Col>
+                {
+                    eventItem.type == 'Booked'?
+                        (<Col span={24} className="ConfirmationPending">
+                            <span> <ErrorOutlineRoundedIcon className="mbIcon" />Confirmation Pending...</span>
+                        </Col>) :
+                        (<Col span={24} className="AppointmentConfirmed">
+                            <span> <CheckCircleOutlineRoundedIcon className="mbIcon" />Appointment Confirmed!</span>
+                        </Col>)
+                }
+
         </Row>
     </div>
     );

@@ -25,7 +25,7 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
                 <HourglassEmptyRoundedIcon class={"waitIcon"} />
                 <div style={{ paddingTop: 5}}>
                     <span>{titleText}</span>
-                    <span class={"discTooltip"}>{disc}</span>
+                    <span class={disc?"discTooltip":""}>{disc}</span>
                 </div>
                 <div style={{marginTop:2, opacity:.7}}>
                     <span>{treatmentName}</span>

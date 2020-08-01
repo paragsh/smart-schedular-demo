@@ -48,7 +48,7 @@ class CustomScheduler extends Component{
                     resourceId: op.employee_Id,
                     title: op.customer_Name,
                     age: op.customer_Age,
-                    type: 'Booked',
+                    type: op.status,
                     treatment_Name:op.treatment_Name,
                     treatment_Duration:op.treatment_Duration,
                     booked_Date:op.booked_Date,
@@ -244,6 +244,8 @@ class CustomScheduler extends Component{
         if (eventItem.type === TYPE_NEW) {
             return (<NewEventPopover
                 eventItem={eventItem}
+                statusColor={statusColor}
+                borderColor={borderColor}
                 title={title}
                 start={start}
                 end={end}
@@ -253,7 +255,7 @@ class CustomScheduler extends Component{
                  />)
         }
         return (
-            existingEventPopOver(borderColor, eventItem, title, start, end)
+            existingEventPopOver(statusColor, borderColor, eventItem, title, start, end)
         );
     };
 }
