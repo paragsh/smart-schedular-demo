@@ -132,7 +132,7 @@ export class NewEventPopover extends Component  {
     render() {
         const {eventItem, title, start, end, customerList, serviceList} = this.props;
         const probabilityCheckerText  = this.state.checkProbability === 100? 'Check No-Show Probability' : ("Cancellation Probability : " + this.state.checkProbability +"%");
-        const confirmationProbabilityText = 'Probability to Confirm ' + this.state.confirmationProbability + '%';
+        const confirmationProbabilityText = 'Confirmation Probability ' + this.state.confirmationProbability + '%';
         const probabilityColor = this.state.checkProbability > 50 ? "CancellationPro" : "ConfirmationPro";
         return (
             <div style={{width: '600px'}}>
