@@ -20,7 +20,7 @@ class CustomScheduler extends Component{
         super(props);
         const selectedDate = props.dateState;
         schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
-            minuteStep: 15,
+            minuteStep: 30,
             eventItemHeight: 50,
             resourceName: 'STAFF NAME',
             eventItemLineHeight: 55,
