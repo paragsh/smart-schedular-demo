@@ -62,7 +62,7 @@ export function SaveAppointment(formPayload) {
         url: '/api/appointment/CreateAppoitment',
         data: savePayload,
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
-    }).then(data => console.log(data));
+    }).then(data => data.data);
 }
 
 
