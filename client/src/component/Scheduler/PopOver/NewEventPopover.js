@@ -90,21 +90,13 @@ export class NewEventPopover extends Component  {
         return (
             <div style={{width: '600px'}}>
                 <Row type="flex" align="middle" style={{height: 40}}>
-                    <Col span={2}/>
-                    <Col span={22} className="overflow-text">
-                        <span className="header2-text" title={title}>New Appointment</span>
+                    <Col span={24} className="mbHeader">
+                        <span className="nameTitle" title={title}>New Appointment</span>
                     </Col>
                 </Row>
                 <form noValidate autoComplete="off">
-                <Row type="flex" align="middle" style={{display:this.IfFirstAppointment}}>
-                    <Col span={2}/>
-                    <Col span={22} className="overflow-text">
-                        <span className="header2-text" title={title}>Confirmation Probability:30%</span>
-                    </Col>
-                </Row>
                     <Row type="flex" align="middle" style={{marginTop: 5, marginDown: 5}}>
-                        <Col span={2}/>
-                        <Col span={22} className="overflow-text">
+                        <Col span={24} className="bodyText">
                             <MuiPickersUtilsProvider utils={MomentUtils}>
                                     <KeyboardDatePicker
                                         variant="inline"
@@ -123,28 +115,13 @@ export class NewEventPopover extends Component  {
                     </Row>
 
                     <Row type="flex" align="middle" style={{marginTop: 5, marginDown: 5}}>
-                        <Col span={2}/>
-                        <Col span={4} className="overflow-text">
-                            <TextField
-                                disabled
-                                id="Duration"
-                                label="Duration"
-                                margin="normal"
-                                value={this.state.treatmentDuration + ' mins'}
-                                variant="filled"
-                            />
-                            <InputLabel/>
-                        </Col>
-                        <Col span={2}/>
-                        <Col span={6} className="overflow-text">
+                        <Col span={7} className="bodyText">
                             <MuiPickersUtilsProvider utils={MomentUtils}>
                                 <KeyboardTimePicker
                                     disableToolbar
-                                    variant="inline"
                                     format="hh:mm"
                                     margin="normal"
                                     id="start-time"
-                                    inputVariant="outlined"
                                     minutesStep={30}
                                     label="Start Time"
                                     value={this.state.bookingFullTIme}
@@ -152,22 +129,30 @@ export class NewEventPopover extends Component  {
                                 />
                             </MuiPickersUtilsProvider>
                         </Col>
-                        <Col span={2}/>
-                        <Col span={4} className="overflow-text">
+                        <Col span={1}/>
+                        <Col span={7} className="bodyText">
                             <TextField
                                 disabled
                                 id="End Time"
                                 margin="normal"
                                 label="End Time"
                                 value={this.state.endTime}
-                                variant="filled"
                             />
                         </Col>
-                        <Col span={2}/>
+                        <Col span={1}/>
+                        <Col span={7} className="bodyText">
+                            <TextField
+                                disabled
+                                id="Duration"
+                                label="Duration"
+                                margin="normal"
+                                value={this.state.treatmentDuration + ' mins'}
+                            />
+                            <InputLabel/>
+                        </Col>
                     </Row>
                     <Row type="flex" align="middle">
-                        <Col span={2}/>
-                        <Col span={12} className="overflow-text">
+                        <Col span={12} className="bodyText">
                             <Autocomplete
                                 id="serviceList-autocomplete"
                                 options={serviceList}
@@ -175,11 +160,11 @@ export class NewEventPopover extends Component  {
                                 onChange={this.handleServiceList}
                                 getOptionLabel={(option) => option['name']}
                                 renderInput={(params) =>
-                                    <TextField {...params} margin="normal" label="Service" variant="outlined"/>}
+                                    <TextField {...params} margin="normal" label="Service" />}
                             />
                         </Col>
                         <Col span={1}/>
-                        <Col span={8} className="overflow-text">
+                        <Col span={11} className="bodyText">
                             <Autocomplete
                                 id="staff-autocomplete"
                                 options={allStaffList}
@@ -190,42 +175,38 @@ export class NewEventPopover extends Component  {
                                 }}
                                 size="small"
                                 getOptionLabel={(option) => option['name']}
-                                renderInput={(params) => <TextField {...params} margin="normal" label="Staff"
-                                                                    variant="outlined"/>}
+                                renderInput={(params) =>
+                                    <TextField {...params} margin="normal" label="Staff" />}
                             />
                         </Col>
                     </Row>
                     <Row type="flex" align="middle">
-                        <Col span={2}/>
-                        <Col span={12} className="overflow-text">
+                        <Col span={12} className="bodyText">
                             <Autocomplete
                                 id="customerList-autocomplete"
                                 options={customerList}
                                 getOptionLabel={(option) => option['customer_Name']}
                                 onChange={this.handleCustomerList}
                                 size="small"
-                                renderInput={(params) => <TextField {...params} margin="normal" label="Customer Name"
-                                                                    variant="outlined"/>}
+                                renderInput={(params) =>
+                                    <TextField {...params} margin="normal" label="Customer Name" />}
                             />
                         </Col>
+                        <Col span={1} />
+                            <Col span={11} className="bodyText">
+                                <span className="ConfirmationPro" title={title}>Confirmation Probability:30%</span>
+                            </Col>
                     </Row>
                 </form>
 
-                <Row type="flex" align="middle" style={{paddingTop: 10}}>
-                    <Col span={10}/>
-                    <Col span={3}>
-                        <Button color="primary">
+                <Row type="flex" className="btn" align="middle" style={{paddingTop: 10}}>
+                    <Col span={24}>
+                        <Button className="btn-black">
                             Cancel
                         </Button>
-                    </Col>
-                    <Col span={2}/>
-                    <Col span={8}>
-                        <Button variant="contained"
-                                color="primary" onClick={() => this.saveButtonClicked()}>
-                            Book Appointment
+                        <Button className="btn-blue" onClick={() => this.saveButtonClicked()}> Book Appointment
                         </Button>
                     </Col>
-                    <Col span={1}/>
                 </Row>
             </div>);
     }

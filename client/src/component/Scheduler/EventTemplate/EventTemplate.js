@@ -14,16 +14,16 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
         marginLeft: '4px',
         fontSize:12,
         color: 'black',
-        ontFamily: "Montserrat"
+        ontFamily: "Open Sans"
     };
     if (!!agendaMaxEventWidth)
         divStyle = {...divStyle, maxWidth: agendaMaxEventWidth};
 
     return (<div key={event.id} className={mustAddCssClass} style={divStyle}>
-                <div style={{ height: 30, paddingTop: 5}}>
-                    <span style={{fontSize:18}}>{titleText}</span>
+                <div style={{ paddingTop: 5}}>
+                    <span>{titleText}</span>
                 </div>
-                <div style={{marginTop:2}}>
+                <div style={{marginTop:2, opacity:.7}}>
                     <span>{treatmentName}</span>
                 </div>
          </div>);
