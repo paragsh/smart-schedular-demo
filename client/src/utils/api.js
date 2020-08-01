@@ -31,7 +31,6 @@ export function fetchWaitListConfirmation(noshowProbability) {
 
 export function SaveAppointment(formPayload) {
     const startDate = moment(formPayload.bookingFullTIme).format('YYYY-MM-DD HH:mm:ss');
-    console.log('startdate',startDate);
     const savePayload={
         "id": 0,
         "location_Id": 3510,
@@ -67,6 +66,50 @@ export function SaveAppointment(formPayload) {
         data: savePayload,
         headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
     }).then(data => console.log(data));
+}
+
+
+export function predictAppointment(formPayload) {
+    const startDate = moment(formPayload.bookingFullTIme).format('YYYY-MM-DD HH:mm:ss');
+    const predictPayload = {
+        "appointments": [
+            {
+                "id": 7094080,
+                "location_Id": 3510,
+                "business_Type": "Spa",
+                "business_Type_Id": 30,
+                "state": "QC",
+                "country": "Canada",
+                "treatment_Id": formPayload.selectedTreatmentId,
+                "treatment_Name": "Oyster Shell Powder Scrub",
+                "billable_Item_Id": 1800929,
+                "employee_Id": formPayload.selectedStaffId,
+                "employee_Name": formPayload.selectedStaffName,
+                "status": "BOOKED",
+                "booked_Date": "2020-07-31T14:44:41",
+                "start_Date": startDate,
+                "end_Date": "2020-08-04T09:45:00",
+                "cancellation_Type": "",
+                "customer_Id": formPayload.selectedCustomerId,
+                "customer_Name": "Pankaj Y Thakare",
+                "customer_Age": 30,
+                "customer_Gender": "Male",
+                "treatment_Duration": formPayload.treatmentDuration,
+                "fee_Amount": 0,
+                "cancellation_Fee_Status": "",
+                "cancellation_Policy": "YES",
+                "probability": 0,
+            }
+        ]
+    };
+
+    return axios({
+        method: 'post',
+        baseURL:'https://smarter-model.azurewebsites.net',
+        url: '/api/NoShow/Predict',
+        data: predictPayload,
+        headers: {'Accept': 'application/json', 'Content-Type' : 'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Credentials':'true'},
+    }).then(data => data.data);
 }
 
 
