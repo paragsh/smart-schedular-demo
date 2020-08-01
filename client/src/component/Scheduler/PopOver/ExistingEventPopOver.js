@@ -2,6 +2,8 @@ import Row from "antd/lib/row";
 import Col from "antd/lib/col";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddAlertIcon from "@material-ui/icons/AddAlert";
+import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
+import ErrorOutlineRoundedIcon from '@material-ui/icons/ErrorOutlineRounded';
 import React from "react";
 import  "./PopOverCss.css";
 import AlarmIcon from '@material-ui/icons/Alarm';
@@ -82,9 +84,12 @@ const startDate=new Date(eventItem.start);
                 </Col>
             </Row>
             <Row type="flex" align="middle">
-            <Col span={24} className="ConfirmationPending">
-                <span> <AlarmIcon className="mbIcon" />Confirmation Pending</span>
-            </Col>
+                <Col span={24} className="ConfirmationPending">
+                    <span> <ErrorOutlineRoundedIcon className="mbIcon" />Confirmation Pending...</span>
+                </Col>
+                <Col span={24} className="AppointmentConfirmed">
+                    <span> <CheckCircleOutlineRoundedIcon className="mbIcon" />Appointment Confirmed!</span>
+                </Col>
         </Row>
     </div>
     );

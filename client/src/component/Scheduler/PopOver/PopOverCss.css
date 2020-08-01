@@ -77,15 +77,6 @@ bodyText {
     font-weight: bold;
 }
 
-.ConfirmationPending {
-    text-align: right;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #868686;
-}
-
 .mbIcon {
     position: relative;
     margin-bottom: -5px;
@@ -149,6 +140,7 @@ startIcon.MuiButton-iconSizeSmall {
     margin-left: -5px;
 }
 
+.AppointmentConfirmed,
 .ConfirmationPending {
     text-align: center;
     background: #eee;
@@ -157,6 +149,10 @@ startIcon.MuiButton-iconSizeSmall {
     display: block;
     color: #000 !important;
     font-size: 14px;
+}
+.AppointmentConfirmed {
+    background: #e5ffe1 !important;
+    color: #109800 !important;
 }
 .ShowConfirmBlock,
 .NoShowBlock {
@@ -226,13 +222,6 @@ span.expander-space {
     font-weight: bold;
     padding-left: 4px;
 }
-table.scheduler-bg-table tr:nth(2),
-table.resource-table tr:nth(2),
-table.scheduler-content-table tr:first-child{
-    /* display: none*/
-}
-
-
 /* header */
 
 .MuiAppBar-colorPrimary {
@@ -251,6 +240,7 @@ table.scheduler-content-table tr:first-child{
     text-align: left;
     font-size: 24px;
     line-height: 1;
+    color: #1890ff;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -272,8 +262,12 @@ table.scheduler-content-table tr:first-child{
     padding: 7px;
     border-radius: 5px;
     background: white;
+    transition: all .2s;
 }
 
+.ant-radio-button-wrapper:hover{
+    transition: all .2s;
+}
 .ant-radio-button-wrapper:hover,
 .icon-nav:hover{
     box-shadow: 0 3px 5px #ccc !important
@@ -298,4 +292,31 @@ svg.waitIcon {
     right: 0;
     opacity: .5;
     width: 13px;
+}
+.discTooltip {
+    position: absolute;
+    z-index: 9999;
+    background: #666;
+    padding: 5px 10px;
+    border-radius: 5px;
+    left: 50%;
+    white-space: normal;
+    top: 30px;
+    text-align: center;
+    margin-left: -75px;
+    width: 150px;
+    color: white;
+}
+.ant-popover-open .discTooltip{
+    display:none;
+}
+.discTooltip:after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #666 transparent;
 }

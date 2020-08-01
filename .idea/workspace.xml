@@ -41,6 +41,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fc45841-e6ed-4f79-9574-c818154b75af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/public/smarter-logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/CustomHeader/CustomHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/CustomHeader/CustomHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/Scheduler/CustomScheduler.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Scheduler/CustomScheduler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/Scheduler/EventTemplate/EventTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Scheduler/EventTemplate/EventTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/ExistingEventPopOver.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/ExistingEventPopOver.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/PopOverCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/PopOverCss.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +65,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/public" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,6 +73,11 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\AI\smart-schedular-demo\client\public" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/smart-schedular-demo/public/index.html" useBuiltInWebServerPort="true">
@@ -86,7 +97,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596090912590</updated>
-      <workItem from="1596090914409" duration="35938000" />
+      <workItem from="1596090914409" duration="41952000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,7 @@ const CustomHeader = () => {
     return(
         <AppBar position="static">
             <Toolbar>
-                <AddToPhotosIcon class={"logo"} />
+                <img src={"./smarter-logo.svg" } />
                 <Typography class={"brand"}>
                     <div class={"BrandName"}>Smarter</div>
                     <div class={"StudioName"}>Chenz Salon and Spa, Pune (IN)</div>

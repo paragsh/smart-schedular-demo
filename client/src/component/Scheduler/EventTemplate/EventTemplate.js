@@ -8,6 +8,7 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
     let borderColor = getBorderColor(bgColor);
     let titleText = schedulerData.behaviors.getEventTextFunc(schedulerData, event);
     let treatmentName = event['treatment_Name'];
+    let disc = event['disc'];
     let divStyle = {
         borderLeft: borderWidth + 'px solid ' + borderColor,
         backgroundColor: backgroundColor,
@@ -24,6 +25,7 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
                 <HourglassEmptyRoundedIcon class={"waitIcon"} />
                 <div style={{ paddingTop: 5}}>
                     <span>{titleText}</span>
+                    <span class={"discTooltip"}>{disc}</span>
                 </div>
                 <div style={{marginTop:2, opacity:.7}}>
                     <span>{treatmentName}</span>

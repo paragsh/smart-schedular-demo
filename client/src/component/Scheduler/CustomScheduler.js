@@ -200,6 +200,7 @@ class CustomScheduler extends Component{
         let newEvent = {
             id: newFreshId,
             title: 'New Booking',
+            disc: 'Mouseover to update booking details',
             start: start,
             end: end,
             type: TYPE_NEW,
