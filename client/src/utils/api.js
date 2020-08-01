@@ -68,6 +68,7 @@ export function SaveAppointment(formPayload) {
 
 export function predictAppointment(formPayload) {
     const startDate = moment(formPayload.bookingFullTIme).format('YYYY-MM-DD HH:mm:ss');
+    const now = moment().format('YYYY-MM-DD HH:mm:ss');
     const predictPayload = {
         "appointments": [
             {
@@ -83,7 +84,7 @@ export function predictAppointment(formPayload) {
                 "employee_Id": formPayload.selectedStaffId,
                 "employee_Name": formPayload.selectedStaffName,
                 "status": "BOOKED",
-                "booked_Date": "2020-07-31T14:44:41",
+                "booked_Date": now,
                 "start_Date": startDate,
                 "end_Date": "2020-08-04T09:45:00",
                 "cancellation_Type": "",
@@ -94,7 +95,7 @@ export function predictAppointment(formPayload) {
                 "treatment_Duration": formPayload.treatmentDuration,
                 "fee_Amount": 0,
                 "cancellation_Fee_Status": "",
-                "cancellation_Policy": "YES",
+                "cancellation_Policy": "",
                 "probability": 0,
             }
         ]

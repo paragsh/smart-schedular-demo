@@ -11,7 +11,7 @@ import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 
 import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
-import {fetchWaitListConfirmation, predictAppointment, SaveAppointment} from "../../../utils/api";
+import {fetchWaitListConfirmation, SaveAppointment} from "../../../utils/api";
 
 export class NewEventPopover extends Component  {
 
@@ -34,15 +34,12 @@ export class NewEventPopover extends Component  {
     }
     IfFirstAppointment='block';
     saveButtonClicked = () => {
-        SaveAppointment(this.state).then(() =>
-            this.props.fetchAndSetAppointmentList(this.state.bookingDate)
-        );
+        this.props.fetchAndSetAppointmentList(this.state.bookingDate);
     };
 
     predictButtonClicked = () => {
-        predictAppointment(this.state).then((res)=>  {
-            console.log(res[0].probability);
-            const checkProbability = res[0].probability.toFixed(2);
+        SaveAppointment(this.state).then((res)=>  {
+            const checkProbability = res.probability.toFixed(2);
             this.setState({checkProbability : checkProbability})
             }
         )
