@@ -41,10 +41,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fc45841-e6ed-4f79-9574-c818154b75af" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/NewEventPopover.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/NewEventPopover.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/pic/user9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/pic/user9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/PopOverCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Scheduler/PopOver/PopOverCss.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/getServiceList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/getServiceList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +114,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596090912590</updated>
-      <workItem from="1596090914409" duration="42038000" />
+      <workItem from="1596090914409" duration="44377000" />
     </task>
     <servers />
   </component>
