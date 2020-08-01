@@ -8,6 +8,7 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
     let borderColor = getBorderColor(bgColor);
     let titleText = schedulerData.behaviors.getEventTextFunc(schedulerData, event);
     let treatmentName = event['treatment_Name'];
+    let shouldShowIcon = event['confirmationProbability'] > 0;
     let disc = event['disc'];
     let divStyle = {
         borderLeft: borderWidth + 'px solid ' + borderColor,
@@ -22,10 +23,10 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
         divStyle = {...divStyle, maxWidth: agendaMaxEventWidth};
 
     return (<div key={event.id} className={mustAddCssClass} style={divStyle}>
-                <HourglassEmptyRoundedIcon class={"waitIcon"} />
+        {shouldShowIcon && <HourglassEmptyRoundedIcon class={"waitIcon"} />}
                 <div style={{ paddingTop: 5}}>
                     <span>{titleText}</span>
-                    <span class={"discTooltip"}>{disc}</span>
+                    <span class={disc?"discTooltip":""}>{disc}</span>
                 </div>
                 <div style={{marginTop:2, opacity:.7}}>
                     <span>{treatmentName}</span>
