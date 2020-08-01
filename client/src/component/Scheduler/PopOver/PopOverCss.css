@@ -158,15 +158,19 @@ startIcon.MuiButton-iconSizeSmall {
     color: #000 !important;
     font-size: 14px;
 }
-
+.ShowConfirmBlock,
 .NoShowBlock {
     text-align: center;
-    background: rgb(255, 208, 208);
     border-radius: 15px;
     margin-bottom: 10px;
     color: #000 !important;
 }
-
+.NoShowBlock {
+    background: rgb(255, 236, 236);
+}
+.ShowConfirmBlock {
+    background: rgb(255, 236, 236);
+}
 span.serviceName {
     font-size: 14px;
     opacity: .7;
@@ -222,9 +226,10 @@ span.expander-space {
     font-weight: bold;
     padding-left: 4px;
 }
-
-table.resource-table tr:first-child span.expander-space {
-    display: none
+table.scheduler-bg-table tr:nth(2),
+table.resource-table tr:nth(2),
+table.scheduler-content-table tr:first-child{
+    /* display: none*/
 }
 
 
@@ -280,4 +285,17 @@ span.header2-text-label {
 }
 .ant-row-flex.ant-row-flex-space-between.ant-row-flex-middle .header2-text {
     margin-left: 20px;
+}
+.slot-text {
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+svg.waitIcon {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    opacity: .5;
+    width: 13px;
 }

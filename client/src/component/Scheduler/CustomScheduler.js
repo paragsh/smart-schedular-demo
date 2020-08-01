@@ -109,11 +109,7 @@ class CustomScheduler extends Component{
     }
 
     getResources(list){
-        const resource = [{
-            id: 'base',
-            name: '',
-            groupOnly: true
-        }];
+        const resource = [];
         list.forEach((list) => {
             const temp = {id:list.employeeId, name: list.employeeName};
             resource.push(temp);

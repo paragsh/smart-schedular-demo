@@ -1,4 +1,5 @@
 import {getBorderColor} from "../../../Constant/color";
+import HourglassEmptyRoundedIcon from '@material-ui/icons/HourglassEmptyRounded';
 import React from "react";
 
 export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeight, agendaMaxEventWidth, mustAddCssClass) => {
@@ -20,6 +21,7 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
         divStyle = {...divStyle, maxWidth: agendaMaxEventWidth};
 
     return (<div key={event.id} className={mustAddCssClass} style={divStyle}>
+                <HourglassEmptyRoundedIcon class={"waitIcon"} />
                 <div style={{ paddingTop: 5}}>
                     <span>{titleText}</span>
                 </div>
