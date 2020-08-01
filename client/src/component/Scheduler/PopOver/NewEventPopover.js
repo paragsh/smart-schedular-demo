@@ -12,6 +12,7 @@ import moment from 'moment';
 
 import {KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import {fetchWaitListConfirmation, SaveAppointment} from "../../../utils/api";
+import {getBorderColor, getProbabilityMeterColor} from "../../../Constant/color";
 
 export class NewEventPopover extends Component  {
 
@@ -130,7 +131,8 @@ export class NewEventPopover extends Component  {
         const {eventItem, title, start, end, customerList, serviceList} = this.props;
         const probabilityCheckerText  = this.state.checkProbability === 100? 'Check No-Show Probability' : ("Cancellation Probability : " + this.state.checkProbability +"%");
         const confirmationProbabilityText = 'Confirmation Probability ' + this.state.confirmationProbability + '%';
-        const probabilityColor = this.state.checkProbability > 50 ? "CancellationPro" : "ConfirmationPro";
+        const probabilityColor = getProbabilityMeterColor(this.state.checkProbability);
+        const probabilityBorderColor = getBorderColor(probabilityColor);
         return (
             <div style={{width: '600px'}}>
                 <Row type="flex" align="middle" style={{height: 40}}>
@@ -245,7 +247,7 @@ export class NewEventPopover extends Component  {
                         </Col>
                         <Col span={1} />
                             <Col span={11} className="bodyText">
-                                <span className={probabilityColor}
+                                <span className="ConfirmationPro" style={{color:probabilityBorderColor, border: "1px solid"+ probabilityBorderColor }}
                                       onClick={()=>this.predictButtonClicked()}
                                       title={title}>
                                     {probabilityCheckerText}

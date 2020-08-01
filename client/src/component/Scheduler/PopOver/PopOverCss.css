@@ -50,9 +50,9 @@ span.ConfirmationPro {
     margin-top: 18px;
     border-radius: 20px;
     text-align: center;
-    color: green;
+    /*color: green;*/
     display: inherit;
-    border: 1px solid green;
+    /*border: 1px solid green;*/
 }
 
 span.CancellationPro {
@@ -60,9 +60,9 @@ span.CancellationPro {
     margin-top: 18px;
     border-radius: 20px;
     text-align: center;
-    color: red;
+    /*color: red;*/
     display: inherit;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 bodyText {
