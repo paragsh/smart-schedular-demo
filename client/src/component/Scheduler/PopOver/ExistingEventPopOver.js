@@ -8,7 +8,7 @@ import "./PopOverCss.css";
 import AlarmIcon from '@material-ui/icons/Alarm';
 import Button from '@material-ui/core/Button';
 import TodayIcon from '@material-ui/icons/Today';
-import {BOOKED, CANCELLED} from "../../../Constant/ActionType";
+import {BOOKED, CANCELLED, CLEANING} from "../../../Constant/ActionType";
 
 
 export const existingEventPopOver = (statusColor, borderColor, eventItem, title, start, end) => {
@@ -18,6 +18,15 @@ export const existingEventPopOver = (statusColor, borderColor, eventItem, title,
     };
     const formattedDate = new Date(eventItem.booked_Date);
     const startDate = new Date(eventItem.start);
+    if(eventItem.type === CLEANING) {
+        return (<div className="popOverCss">
+            <Row type="flex" align="middle" className="NoShowBlock" style={{background: statusColor}}>
+            <Col span={24}>
+                <span className="NoShowTitle bodyText" style={{color: borderColor}}>SANITATION</span>
+            </Col>
+        </Row>
+        </div>)
+    }
     return (
         <div className="popOverCss">
             {eventItem.type !== CANCELLED &&

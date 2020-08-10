@@ -7,6 +7,7 @@ const ORANGE =  "#FFE7A5";
 const LIGHT_ORANGE =  "#FFF8E5";
 const LIGHT_GREEN =  "#E5F4DE";
 const GREEN =  "#B4E8B8";
+export const BLUE =  '#e9ecff';
 const GRAY =  "#e6e6e6";
 export const PURPLE =  purple[50];
 
@@ -18,6 +19,7 @@ const LIGHT_ORANGE_BORDER =  "#FFC563";
 const LIGHT_GREEN_BORDER =  "#4BA151BF";
 const GREEN_BORDER =  "#006F0794";
 const GRAY_BORDER =  "#666";
+const BLUE_BORDER =  "#9daaff";
 const DARK_PURPLE =  purple[900];
 
 
@@ -45,6 +47,7 @@ export function getBorderColor(bgColor) {
     let borderColor;
     switch (bgColor) {
         case GRAY : borderColor =  GRAY_BORDER; break;
+        case BLUE : borderColor =  BLUE_BORDER; break;
         case RED : borderColor =  RED_BORDER; break;
         case LIGHT_RED : borderColor =  LIGHT_RED_BORDER; break;
         case ORANGE : borderColor =  ORANGE_BORDER; break;

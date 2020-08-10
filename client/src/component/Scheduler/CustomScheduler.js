@@ -4,6 +4,7 @@ import withDragDropContext from './withDnDContext';
 import 'react-big-scheduler/lib/css/style.css';
 
 import {
+    BLUE,
     getBorderColor, getProbabilityMeterColor,
     PURPLE,
 } from "../../Constant/color";
@@ -11,6 +12,8 @@ import {NewEventPopover} from "./PopOver/NewEventPopover";
 import {existingEventPopOver} from "./PopOver/ExistingEventPopOver";
 import {eventTemplate} from "./EventTemplate/EventTemplate";
 import {fetchAppointmentList} from "../../utils/api";
+import moment from "moment";
+import {CANCELLED, CLEANING} from "../../Constant/ActionType";
 
 const TYPE_NEW = 'New';
 let schedulerData;
@@ -20,7 +23,7 @@ class CustomScheduler extends Component{
         super(props);
         const selectedDate = props.dateState;
         schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
-            minuteStep: 30,
+            minuteStep: 15,
             eventItemHeight: 50,
             resourceName: 'STAFF NAME',
             eventItemLineHeight: 55,
@@ -36,7 +39,8 @@ class CustomScheduler extends Component{
     }
 
     getAppointmentList(list) {
-        return list.map((op) => {
+        let appt = [];
+        const map = list.map((op) => {
                 return {
                     id: op.id,
                     start: op.start_Date,
@@ -56,6 +60,53 @@ class CustomScheduler extends Component{
                 }
             }
         );
+
+        console.log(map);
+
+        for (let i =0; i< list.length;i++) {
+            const op = list[i];
+            appt.push({
+                id: op.id,
+                start: op.start_Date,
+                end: op.end_Date,
+                // resizable: false,
+                resourceId: op.employee_Id,
+                title: op.customer_Name,
+                age: op.customer_Age,
+                type: op.status,
+                treatment_Name: op.treatment_Name,
+                treatment_Duration: op.treatment_Duration,
+                booked_Date: op.booked_Date,
+                probability: op.probability,
+                confirmationProbability: op.waitListConfirmationProbality,
+                // movabable: false,
+                bgColor: getProbabilityMeterColor(op.probability, op.status)
+            });
+
+            if(op.status !== CANCELLED) {
+                const newEnd = moment(op.end_Date).add(15,'minutes').format('YYYY-MM-DD HH:mm:ss');
+                appt.push({
+                    id: op.id+1,
+                    start: op.end_Date,
+                    end: newEnd,
+                    // resizable: false,
+                    resourceId: op.employee_Id,
+                    title: CLEANING,
+                    age: op.customer_Age,
+                    type: CLEANING,
+                    treatment_Name: '',
+                    treatment_Duration: 15,
+                    booked_Date: op.booked_Date,
+                    probability: op.probability,
+                    confirmationProbability: op.waitListConfirmationProbality,
+                    // movabable: false,
+                    bgColor: BLUE
+                });
+            }
+
+        }
+        console.log(appt);
+        return appt;
     }
 
     componentDidMount() {
