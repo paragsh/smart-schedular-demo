@@ -52,7 +52,7 @@ class CustomScheduler extends Component{
                     probability:op.probability,
                     confirmationProbability:op.waitListConfirmationProbality,
                     // movabable: false,
-                    bgColor: getProbabilityMeterColor(op.probability)
+                    bgColor: getProbabilityMeterColor(op.probability, op.status)
                 }
             }
         );
