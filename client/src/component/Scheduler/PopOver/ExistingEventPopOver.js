@@ -22,7 +22,7 @@ export const existingEventPopOver = (statusColor, borderColor, eventItem, title,
         return (<div className="popOverCss">
             <Row type="flex" align="middle" className="NoShowBlock" style={{background: statusColor}}>
             <Col span={24}>
-                <span className="NoShowTitle bodyText" style={{color: borderColor}}>SANITATION</span>
+                <span className="NoShowTitle bodyText" style={{color: borderColor}}>Cleaning and Sanitation</span>
             </Col>
         </Row>
         </div>)

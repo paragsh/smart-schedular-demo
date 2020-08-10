@@ -2,7 +2,7 @@
 
 export const CANCELLED = 'Cancelled';
 export const BOOKED = 'Booked';
-export const CLEANING = 'Cleaning';
+export const CLEANING = 'Recovery Time';
 
 
 export const ADD_DATE = 'ADD_DATE';

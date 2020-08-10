@@ -1,6 +1,8 @@
 import {getBorderColor} from "../../../Constant/color";
 import HourglassEmptyRoundedIcon from '@material-ui/icons/HourglassEmptyRounded';
 import React from "react";
+import {CLEANING} from "../../../Constant/ActionType";
+import AlarmIcon from '@material-ui/icons/Alarm';
 
 export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeight, agendaMaxEventWidth, mustAddCssClass) => {
     let borderWidth = isStart ? '4' : '0';
@@ -21,6 +23,16 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
     };
     if (!!agendaMaxEventWidth)
         divStyle = {...divStyle, maxWidth: agendaMaxEventWidth};
+
+    if(event.type === CLEANING) {
+        return (
+            <div key={event.id} className={mustAddCssClass} style={divStyle}>
+                <div style={{paddingTop: 13, opacity: 0.5} }>
+                    <span><AlarmIcon/></span>
+                </div>
+            </div>
+        )
+    }
 
     return (<div key={event.id} className={mustAddCssClass} style={divStyle}>
         {shouldShowIcon && <HourglassEmptyRoundedIcon class={"waitIcon"} />}

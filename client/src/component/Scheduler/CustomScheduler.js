@@ -24,10 +24,10 @@ class CustomScheduler extends Component{
         const selectedDate = props.dateState;
         schedulerData = new SchedulerData(selectedDate, ViewTypes.Day, false, false, {
             minuteStep: 15,
-            eventItemHeight: 50,
+            eventItemHeight: 55,
             resourceName: 'STAFF NAME',
             eventItemLineHeight: 55,
-            dayCellWidth: 90,
+            dayCellWidth: 55,
             dayStartFrom: 9 ,
             dayStopTo: 18
         });
@@ -245,12 +245,13 @@ class CustomScheduler extends Component{
             }
 
         });
+        const newEnd = moment(end).add(15,'minutes').format('YYYY-MM-DD HH:mm:ss');
         let newEvent = {
             id: newFreshId,
             title: 'New Booking',
             disc: 'Mouseover to update booking details',
             start: start,
-            end: end,
+            end: newEnd,
             type: TYPE_NEW,
             staffName: slotName,
             resourceId: slotId,
