@@ -61,6 +61,19 @@ export const Setting = () => {
                             <span className="checkmark"/>
                         </label>
                     </div>
+                    <div className="block">
+                        <strong>No Show Fee Configuration</strong>
+                        <label className="container">
+                            <div>Same for all appointments</div>
+                            <input type="radio" checked="checked" name="radio2"/>
+                            <span className="checkmark"/>
+                        </label>
+                        <label className="container">
+                            <div>Increase the no-show fee for appointments with high no-show probability</div>
+                            <input type="radio" checked="checked" name="radio2"/>
+                            <span className="checkmark"/>
+                        </label>
+                    </div>
                 </main>
             </div>
         </div>
