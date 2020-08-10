@@ -1,15 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import CustomHeader from "../CustomHeader/CustomHeader";
 import SchedulerContainer from "../../Container/SchedulerContainer";
 
-function App() {
-  return (
-    <div className="App">
-     <CustomHeader/>
-     <SchedulerContainer/>
-    </div>
-  );
+class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <CustomHeader toggleIsAdmin={this.props.toggleIsAdmin}/>
+                <SchedulerContainer/>
+            </div>
+        );
+    }
 }
 
 export default App;

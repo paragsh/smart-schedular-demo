@@ -14,6 +14,7 @@ import {eventTemplate} from "./EventTemplate/EventTemplate";
 import {fetchAppointmentList} from "../../utils/api";
 import moment from "moment";
 import {CANCELLED, CLEANING, TYPE_NEW} from "../../Constant/ActionType";
+import {Setting} from "../Setting/Setting";
 
 let schedulerData;
 class CustomScheduler extends Component{
@@ -60,7 +61,6 @@ class CustomScheduler extends Component{
             }
         );
 
-        console.log(map);
 
         for (let i =0; i< list.length;i++) {
             const op = list[i];
@@ -104,7 +104,6 @@ class CustomScheduler extends Component{
             }
 
         }
-        console.log(appt);
         return appt;
     }
 
@@ -169,7 +168,8 @@ class CustomScheduler extends Component{
         return (
             <div>
                 {/*<div>HELLO<AlertDialog/></div>*/}
-                    <Scheduler schedulerData={viewModel}
+                {this.props.isAdminPage&&<Setting/>}
+                <Scheduler schedulerData={viewModel}
                                prevClick={this.prevClick}
                                nextClick={this.nextClick}
                                onSelectDate={this.onSelectDate}

@@ -6,6 +6,7 @@ export const CLEANING = 'Recovery Time';
 export const TYPE_NEW = 'New';
 
 
+export const TOGGLE_IS_ADMIN = 'TOGGLE_IS_ADMIN';
 
 export const ADD_DATE = 'ADD_DATE';
 export const ADD_CUSTOMER_LIST = 'ADD_CUSTOMER_LIST';

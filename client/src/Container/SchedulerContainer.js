@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
         serviceList: state.serviceList,
         customerList: state.customerList,
         dateState: state.date.selectedDate,
+        isAdminPage: state.date.isAdminPage,
     }
 }
 

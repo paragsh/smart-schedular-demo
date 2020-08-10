@@ -1,4 +1,4 @@
-import {ADD_DATE} from "../Constant/ActionType";
+import {ADD_DATE, TOGGLE_IS_ADMIN} from "../Constant/ActionType";
 
 
 export function selectDate(date) {
@@ -7,4 +7,10 @@ export function selectDate(date) {
         payload: date
     }
 
+}
+
+export function toggleIsAdmin() {
+    return {
+        type: TOGGLE_IS_ADMIN
+    }
 }
