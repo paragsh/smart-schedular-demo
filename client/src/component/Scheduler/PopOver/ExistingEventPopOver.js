@@ -9,10 +9,11 @@ import  "./PopOverCss.css";
 import AlarmIcon from '@material-ui/icons/Alarm';
 import Button from '@material-ui/core/Button';
 import TodayIcon from '@material-ui/icons/Today';
+import {CANCELLED} from "../../../Constant/ActionType";
 
 
 export const existingEventPopOver = (statusColor, borderColor, eventItem, title, start, end) => {
-const showConfirmationProbability=eventItem.confirmationProbability!=0?'block':'none';
+const showConfirmationProbability=(eventItem.confirmationProbability!==0 && eventItem.type !== CANCELLED)?'block':'none';
     const deleteButtonClicked = eventItem => {
        // alert(`You just clicked deleteButtonClicked button. event title: ${eventItem.title}`);
     };
@@ -20,12 +21,12 @@ const formattedDate=new Date(eventItem.booked_Date);
 const startDate=new Date(eventItem.start);
     return (
     <div className="popOverCss" >
-        <Row type="flex" align="middle" className="NoShowBlock" style={{background: statusColor}}>
+        {eventItem.type !== CANCELLED && <Row type="flex" align="middle" className="NoShowBlock" style={{background: statusColor}}>
             <Col span={24}>
                 <span className="NoShowTitle bodyText" style={{color: borderColor}} title={eventItem.probability}>No-Show Probability: </span>
                 <span className="NoShowValue bodyText" style={{color: borderColor}} title={eventItem.probability}>{eventItem.probability.toFixed(2)}%</span>
             </Col>
-        </Row>
+        </Row>}
 
         <Row type="flex" align="middle"  className="ShowConfirmBlock"  style={{display:showConfirmationProbability
         }}>

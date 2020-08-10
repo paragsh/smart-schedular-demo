@@ -1,4 +1,5 @@
 import purple from '@material-ui/core/colors/purple';
+import {CANCELLED} from "./ActionType";
 
 const RED =  "#FFD0D0";
 const LIGHT_RED =  "#FFF2F2";
@@ -21,7 +22,7 @@ const DARK_PURPLE =  purple[900];
 
 
 export function getProbabilityMeterColor(probability, status) {
-    if (status === 'Cancelled') {
+    if (status === CANCELLED) {
         return GRAY;
     }
 
