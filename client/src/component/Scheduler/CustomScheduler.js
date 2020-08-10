@@ -13,9 +13,8 @@ import {existingEventPopOver} from "./PopOver/ExistingEventPopOver";
 import {eventTemplate} from "./EventTemplate/EventTemplate";
 import {fetchAppointmentList} from "../../utils/api";
 import moment from "moment";
-import {CANCELLED, CLEANING} from "../../Constant/ActionType";
+import {CANCELLED, CLEANING, TYPE_NEW} from "../../Constant/ActionType";
 
-const TYPE_NEW = 'New';
 let schedulerData;
 class CustomScheduler extends Component{
 

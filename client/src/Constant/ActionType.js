@@ -3,6 +3,8 @@
 export const CANCELLED = 'Cancelled';
 export const BOOKED = 'Booked';
 export const CLEANING = 'Recovery Time';
+export const TYPE_NEW = 'New';
+
 
 
 export const ADD_DATE = 'ADD_DATE';

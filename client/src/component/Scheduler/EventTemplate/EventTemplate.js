@@ -1,7 +1,7 @@
 import {getBorderColor} from "../../../Constant/color";
 import HourglassEmptyRoundedIcon from '@material-ui/icons/HourglassEmptyRounded';
 import React from "react";
-import {CLEANING} from "../../../Constant/ActionType";
+import {CLEANING, TYPE_NEW} from "../../../Constant/ActionType";
 import AlarmIcon from '@material-ui/icons/Alarm';
 
 export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeight, agendaMaxEventWidth, mustAddCssClass) => {
@@ -29,6 +29,16 @@ export const eventTemplate = (isStart, bgColor, schedulerData, event, mustBeHeig
             <div key={event.id} className={mustAddCssClass} style={divStyle}>
                 <div style={{paddingTop: 13, opacity: 0.5} }>
                     <span><AlarmIcon/></span>
+                </div>
+            </div>
+        )
+    }
+
+    if(event.type === TYPE_NEW) {
+        return (
+            <div key={event.id} className={mustAddCssClass} style={divStyle}>
+                <div style={{paddingTop: 5, whiteSpace: 'pre-line'} }>
+                    <span>New Booking</span>
                 </div>
             </div>
         )
