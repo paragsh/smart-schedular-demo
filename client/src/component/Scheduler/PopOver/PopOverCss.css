@@ -161,6 +161,7 @@ startIcon.MuiButton-iconSizeSmall {
 }
 
 .AppointmentConfirmed,
+.AppointmentCancelled,
 .ConfirmationPending {
     text-align: center;
     background: #eee;
@@ -173,6 +174,10 @@ startIcon.MuiButton-iconSizeSmall {
 .AppointmentConfirmed {
     background: #e5ffe1 !important;
     color: #109800 !important;
+}
+.AppointmentCancelled {
+    background: #e6e6e6 !important;
+    color: #666 !important;
 }
 .ShowConfirmBlock,
 .NoShowBlock {

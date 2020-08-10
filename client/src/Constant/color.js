@@ -7,7 +7,7 @@ const ORANGE =  "#FFE7A5";
 const LIGHT_ORANGE =  "#FFF8E5";
 const LIGHT_GREEN =  "#E5F4DE";
 const GREEN =  "#B4E8B8";
-const GRAY =  "#CCC";
+const GRAY =  "#e6e6e6";
 export const PURPLE =  purple[50];
 
 

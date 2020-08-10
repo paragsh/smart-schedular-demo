@@ -1,6 +1,8 @@
 
 
 export const CANCELLED = 'Cancelled';
+export const BOOKED = 'Booked';
+
 
 export const ADD_DATE = 'ADD_DATE';
 export const ADD_CUSTOMER_LIST = 'ADD_CUSTOMER_LIST';
