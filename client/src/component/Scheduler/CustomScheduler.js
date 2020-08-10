@@ -27,7 +27,7 @@ class CustomScheduler extends Component{
             eventItemHeight: 50,
             resourceName: 'STAFF NAME',
             eventItemLineHeight: 55,
-            dayCellWidth: 120,
+            dayCellWidth: 90,
             dayStartFrom: 9 ,
             dayStopTo: 18
         });
