@@ -102,7 +102,7 @@ export const existingEventPopOver = (statusColor, borderColor, eventItem, title,
                                 <span> <CheckCircleOutlineRoundedIcon className="mbIcon"/>Appointment Confirmed!</span>
                             </Col>)) :
                     (<Col span={24} className="AppointmentCancelled">
-                        <span> <CheckCircleOutlineRoundedIcon className="mbIcon"/>Appointment Cancelled</span>
+                        <span> <ErrorOutlineRoundedIcon className="mbIcon"/>Appointment Cancelled</span>
                     </Col>)
                 }
 
