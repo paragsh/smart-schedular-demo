@@ -19,13 +19,7 @@ export const existingEventPopOver = (statusColor, borderColor, eventItem, title,
     const formattedDate = new Date(eventItem.booked_Date);
     const startDate = new Date(eventItem.start);
     if(eventItem.type === CLEANING) {
-        return (<div className="popOverCss">
-            <Row type="flex" align="middle" className="NoShowBlock" style={{background: statusColor}}>
-            <Col span={24}>
-                <span className="NoShowTitle bodyText" style={{color: borderColor}}>Cleaning and Sanitation</span>
-            </Col>
-        </Row>
-        </div>)
+        return (<p>Cleaning and Sanitation</p>)
     }
     return (
         <div className="popOverCss">
